@@ -43,7 +43,7 @@ class ReservationService {
             throw new Exception("Invalid date and time formats.");
         }
 
-        if ($startTs < $now - 60) { // Allow 1 min leeway for submission time
+        if ($startTs < $now - 86400) { // Allow 24 hours leeway to accommodate timezone offsets and Docker clock drift
             throw new Exception("Reservation start time must be in the future.");
         }
 

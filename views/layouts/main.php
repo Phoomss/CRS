@@ -366,7 +366,7 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: #0b0f19;
+            background: var(--bg-color);
             z-index: 9999;
             display: flex;
             align-items: center;
@@ -381,7 +381,7 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
             border-radius: 50%;
             border-top-color: var(--accent-color);
             animation: spin 1s infinite linear;
-            box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.15);
         }
 
         @keyframes spin {
