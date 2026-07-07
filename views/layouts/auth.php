@@ -20,6 +20,12 @@
             --text-secondary: #475569;
             --accent-color: #6366f1;
             --accent-hover: #4f46e5;
+
+            /* Native Bootstrap 5 Overrides */
+            --bs-primary: var(--accent-color) !important;
+            --bs-primary-rgb: 99, 102, 241 !important;
+            --bs-link-color: var(--accent-color) !important;
+            --bs-link-hover-color: var(--accent-hover) !important;
         }
 
         body {

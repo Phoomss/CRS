@@ -11,8 +11,8 @@
     <style>
         body {
             font-family: 'Outfit', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-            color: #fff;
+            background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%);
+            color: #0f172a;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -21,20 +21,20 @@
         }
 
         .error-card {
-            background: rgba(30, 41, 59, 0.45);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: 24px;
             padding: 50px 40px;
             text-align: center;
             max-width: 500px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
         }
 
         .error-code {
             font-size: 6rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
@@ -48,20 +48,22 @@
             padding: 12px 30px;
             font-weight: 600;
             transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .btn-indigo:hover {
             background-color: #4f46e5;
             color: #fff;
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.25);
         }
     </style>
 </head>
 <body>
     <div class="error-card">
         <h1 class="error-code">404</h1>
-        <h3 class="fw-bold text-white mt-3 mb-2">Page Not Found</h3>
+        <h3 class="fw-bold text-dark mt-3 mb-2">Page Not Found</h3>
         <p class="text-secondary small mb-4">The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
         <a href="/dashboard" class="btn btn-indigo">Return to Dashboard</a>
     </div>

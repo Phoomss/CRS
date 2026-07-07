@@ -36,6 +36,17 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
             --accent-color: #6366f1;
             --accent-hover: #4f46e5;
             --sidebar-bg: #ffffff;
+
+            /* Native Bootstrap 5 Property Overrides */
+            --bs-body-bg: var(--bg-color) !important;
+            --bs-body-color: var(--text-primary) !important;
+            --bs-primary: var(--accent-color) !important;
+            --bs-primary-rgb: 99, 102, 241 !important;
+            --bs-link-color: var(--accent-color) !important;
+            --bs-link-hover-color: var(--accent-hover) !important;
+            --bs-card-bg: var(--card-bg) !important;
+            --bs-card-border-color: var(--card-border) !important;
+            --bs-border-color: var(--card-border) !important;
         }
 
         body {
@@ -55,6 +66,8 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
         /* Sidebar Styling */
         #sidebar {
             width: var(--sidebar-width);
+            min-width: var(--sidebar-width);
+            flex-shrink: 0;
             background-color: var(--sidebar-bg);
             border-right: 1px solid rgba(0, 0, 0, 0.06);
             transition: all 0.3s ease;
@@ -131,6 +144,7 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
             font-weight: 500;
             font-size: 0.9rem;
             transition: all 0.2s ease;
+            white-space: nowrap; /* Prevent menu items from wrapping to multiple lines */
         }
 
         .sidebar-link i {
@@ -211,6 +225,7 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
             padding: 30px;
             flex-grow: 1;
             overflow-y: auto;
+            overflow-x: hidden; /* Prevent horizontal scrollbars caused by Bootstrap row negative margins */
         }
 
         /* Custom Card Styling */
@@ -346,9 +361,25 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
         }
 
         .swal2-popup {
-            background-color: #ffffff !important;
-            color: #0f172a !important;
+            background-color: var(--card-bg) !important;
+            color: var(--text-primary) !important;
             box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1) !important;
+            border: 1px solid var(--card-border) !important;
+        }
+        .swal2-title {
+            color: var(--text-primary) !important;
+        }
+        .swal2-html-container {
+            color: var(--text-secondary) !important;
+        }
+        .swal2-confirm {
+            background-color: var(--accent-color) !important;
+            color: #ffffff !important;
+        }
+        .swal2-cancel {
+            background-color: #f1f5f9 !important;
+            color: #475569 !important;
+            border: 1px solid rgba(0, 0, 0, 0.08) !important;
         }
 
         /* Custom Badges */
@@ -564,8 +595,10 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
 
             <!-- Main Render Area -->
             <main class="main-content">
-                <!-- Render inner page content -->
-                <?= $content ?>
+                <div class="container-fluid">
+                    <!-- Render inner page content -->
+                    <?= $content ?>
+                </div>
             </main>
         </div>
     </div>
