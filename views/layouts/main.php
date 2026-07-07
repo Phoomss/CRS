@@ -509,7 +509,9 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
                             <span>Workstations</span>
                         </a>
                     </li>
-                    
+                <?php endif; ?>
+                
+                <?php if ($roleName === 'Super Administrator' || $roleName === 'Department Administrator'): ?>
                     <li class="sidebar-item" id="menu-laboratories">
                         <a href="/laboratories" class="sidebar-link">
                             <i class="fa-solid fa-door-open"></i>
@@ -523,14 +525,18 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
                             <span>User Accounts</span>
                         </a>
                     </li>
+                <?php endif; ?>
 
+                <?php if ($roleName === 'Super Administrator' || $roleName === 'Department Administrator' || $roleName === 'Lecturer' || $roleName === 'Staff'): ?>
                     <li class="sidebar-item" id="menu-reports">
                         <a href="/reports" class="sidebar-link">
                             <i class="fa-solid fa-file-invoice-dollar"></i>
                             <span>Usage Reports</span>
                         </a>
                     </li>
+                <?php endif; ?>
 
+                <?php if ($roleName === 'Super Administrator' || $roleName === 'Department Administrator'): ?>
                     <li class="sidebar-item" id="menu-settings">
                         <a href="/settings" class="sidebar-link">
                             <i class="fa-solid fa-gears"></i>
