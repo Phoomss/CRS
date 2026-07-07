@@ -169,6 +169,7 @@ class ReservationRepository {
                    u.first_name, u.last_name, u.email, u.student_id, u.employee_id,
                    l.name as laboratory_name, l.code as laboratory_code,
                    rs.name as status_name,
+                   cd.computer_id,
                    c.code as computer_code, c.name as computer_name
             FROM reservations r
             JOIN users u ON r.user_id = u.id

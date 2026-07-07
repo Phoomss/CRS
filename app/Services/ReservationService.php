@@ -115,9 +115,9 @@ class ReservationService {
         ]);
 
         if ($statusId === 2) {
-            $this->notificationService->send($userId, "Reservation Approved", "Your reservation #{$resId} for laboratory {$lab['name']} has been automatically approved.", 'both');
+            $this->notificationService->send($userId, "การจองได้รับการอนุมัติ", "การจองหมายเลข #{$resId} สำหรับห้องปฏิบัติการ {$lab['name']} ได้รับการอนุมัติอัตโนมัติแล้ว", 'both');
         } else {
-            $this->notificationService->send($userId, "Reservation Received", "Your reservation #{$resId} is pending administrator review.", 'dashboard');
+            $this->notificationService->send($userId, "ได้รับคำขอการจองแล้ว", "การจองหมายเลข #{$resId} ของคุณอยู่ระหว่างรอการตรวจสอบและอนุมัติจากผู้ดูแลระบบ", 'dashboard');
         }
 
         return $resId;
@@ -140,7 +140,7 @@ class ReservationService {
         
         if ($result) {
             $this->logService->log('approve_reservation', ['reservation_id' => $id, 'remarks' => $remarks]);
-            $this->notificationService->send((int)$res['user_id'], "Reservation Approved", "Your reservation #{$id} has been approved. Please check in on time.", 'both');
+            $this->notificationService->send((int)$res['user_id'], "การจองได้รับการอนุมัติ", "การจองหมายเลข #{$id} ของคุณได้รับการอนุมัติแล้ว กรุณาเช็คอินเข้าใช้งานให้ตรงเวลา", 'both');
         }
 
         return $result;
@@ -163,7 +163,7 @@ class ReservationService {
         
         if ($result) {
             $this->logService->log('reject_reservation', ['reservation_id' => $id, 'remarks' => $remarks]);
-            $this->notificationService->send((int)$res['user_id'], "Reservation Rejected", "Your reservation #{$id} has been rejected. Reason: {$remarks}", 'both');
+            $this->notificationService->send((int)$res['user_id'], "คำขอการจองถูกปฏิเสธ", "การจองหมายเลข #{$id} ของคุณถูกปฏิเสธ เนื่องจาก: {$remarks}", 'both');
         }
 
         return $result;
@@ -199,7 +199,7 @@ class ReservationService {
         
         if ($result) {
             $this->logService->log('cancel_reservation', ['reservation_id' => $id]);
-            $this->notificationService->send((int)$res['user_id'], "Reservation Cancelled", "Your reservation #{$id} has been successfully cancelled.", 'both');
+            $this->notificationService->send((int)$res['user_id'], "ยกเลิกการจองเรียบร้อยแล้ว", "การจองหมายเลข #{$id} ของคุณถูกยกเลิกเรียบร้อยแล้ว", 'both');
         }
 
         return $result;
@@ -220,6 +220,10 @@ class ReservationService {
 
         if ((int)$res['status_id'] !== 2) {
             throw new Exception("You can only check in to an Approved reservation.");
+        }
+
+        if ($res['check_in_time'] !== null) {
+            throw new Exception("You have already checked in to this reservation.");
         }
 
         $now = time();
@@ -271,7 +275,7 @@ class ReservationService {
             // Update reservation status to Completed
             $this->resRepository->updateStatus($reservationId, 5, 'Check-out completed'); // 5 = Completed
             $this->logService->log('check_out', ['reservation_id' => $reservationId, 'computer_id' => $computerId]);
-            $this->notificationService->send($userId, "Reservation Completed", "Thank you for using the computer lab. Your session has ended.", 'dashboard');
+            $this->notificationService->send($userId, "สิ้นสุดการเข้าใช้งานเครื่อง", "ขอบคุณสำหรับการเข้าใช้งานห้องปฏิบัติการคอมพิวเตอร์ เซสชันการใช้งานของคุณสิ้นสุดแล้ว", 'dashboard');
         }
 
         return $result;
@@ -290,7 +294,7 @@ class ReservationService {
             if ($res) {
                 $this->resRepository->updateStatus((int)$id, 6, 'Check-in window expired'); // 6 = Expired
                 $this->logService->log('expire_reservation', ['reservation_id' => $id]);
-                $this->notificationService->send((int)$res['user_id'], "Reservation Expired", "Your reservation #{$id} has expired because you failed to check in on time.", 'both');
+                $this->notificationService->send((int)$res['user_id'], "หมดเวลาเช็คอินเข้าใช้งาน", "การจองหมายเลข #{$id} ของคุณหมดอายุแล้ว เนื่องจากคุณไม่ได้เช็คอินเข้าใช้งานตามเวลาที่กำหนด", 'both');
                 $count++;
             }
         }

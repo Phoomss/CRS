@@ -74,8 +74,7 @@
                                 </td>
                                 <td>
                                     <?php if ($r['computer_code']): ?>
-                                        <span class="badge bg-indigo-subtle text-indigo" style="font-size: 0.8rem;"><?= esc($r['computer_code']) ?></span>
-                                    </td>
+                                        <span class="badge bg-indigo-subtle text-indigo text-dark" style="font-size: 0.8rem;"><?= esc($r['computer_code']) ?></span>
                                     <?php else: ?>
                                         <span class="text-muted small">None selected</span>
                                     <?php endif; ?>
@@ -111,7 +110,7 @@
                                         <?php endif; ?>
 
                                         <?php if (in_array($r['status_id'], [1, 2])): ?>
-                                            <button class="btn btn-sm btn-outline-danger btn-cancel-booking" data-id="<?= $r['id'] ?>" title="Cancel Booking"><i class="fa-regular fa-trash-can"></i></button>
+                                            <button class="btn btn-sm btn-outline-danger btn-cancel-booking" data-id="<?= $r['id'] ?>" title="Cancel Booking"><i class="fa-solid fa-ban"></i></button>
                                         <?php endif; ?>
                                     </div>
                                 </td>

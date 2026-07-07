@@ -573,18 +573,18 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
                             <?php endif; ?>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark p-2" style="width: 290px; border-radius: 12px;">
-                            <h6 class="dropdown-header border-bottom border-secondary pb-2 mb-2 text-white">Notifications</h6>
+                            <h6 class="dropdown-header border-bottom border-secondary pb-2 mb-2 fw-semibold">การแจ้งเตือน</h6>
                             <?php if (empty($unreadNotifs)): ?>
-                                <div class="text-center text-muted py-3" style="font-size: 0.85rem;">No new notifications.</div>
+                                <div class="text-center text-muted py-3" style="font-size: 0.85rem;">ไม่มีการแจ้งเตือนใหม่</div>
                             <?php else: ?>
                                 <?php foreach ($unreadNotifs as $notif): ?>
                                     <div class="dropdown-item py-2 border-bottom border-secondary-subtle" style="white-space: normal; font-size: 0.8rem;">
-                                        <div class="fw-bold text-white"><?= esc($notif['title']) ?></div>
+                                        <div class="fw-bold text-dark"><?= esc($notif['title']) ?></div>
                                         <div class="text-secondary"><?= esc($notif['message']) ?></div>
                                     </div>
                                 <?php endforeach; ?>
                             <?php endif; ?>
-                            <a href="/reservations" class="dropdown-item text-center text-primary fw-semibold pt-2 pb-0" style="font-size: 0.8rem;">View Reservations History</a>
+                            <a href="/reservations" class="dropdown-item text-center text-primary fw-semibold pt-2 pb-0" style="font-size: 0.8rem;">ดูประวัติการจองทั้งหมด</a>
                         </div>
                     </div>
 
