@@ -43,9 +43,9 @@ INSERT INTO `reservation_status` (`id`, `name`, `description`) VALUES
 
 -- 5. Seed Core Settings
 INSERT INTO `settings` (`key`, `value`) VALUES
-('dept_name', 'Department of Computer Engineering'),
-('academic_year', '2026-2027'),
-('semester', 'Semester 1'),
+('dept_name', 'ภาควิชาวิศวกรรมคอมพิวเตอร์'),
+('academic_year', '2569-2570'),
+('semester', 'ภาคเรียนที่ 1'),
 ('max_reservation_hours', '3'),
 ('max_reservations_per_user', '5'),
 ('check_in_expiry_minutes', '15'),
@@ -56,31 +56,31 @@ INSERT INTO `settings` (`key`, `value`) VALUES
 ('smtp_pass', ''),
 ('smtp_encryption', 'tls'),
 ('smtp_from_email', 'no-reply@lab.edu'),
-('smtp_from_name', 'Lab Booking System'),
+('smtp_from_name', 'ระบบจองห้องปฏิบัติการคอมพิวเตอร์'),
 ('timezone', 'Asia/Bangkok');
 
 -- 6. Seed Default Users (Password is 'admin123' for all)
 -- Password bcrypt hash for 'admin123' is '$2y$12$XH2NiUYOmVfI0xQATP7c.Ow8qL8J/8dhBHTlSGA7w5.So1nf8NfrG'
 INSERT INTO `users` (`first_name`, `last_name`, `email`, `phone_number`, `password_hash`, `role_id`, `status`, `employee_id`, `student_id`) VALUES
-('Super', 'Admin', 'admin@lab.edu', '0123456789', '$2y$12$XH2NiUYOmVfI0xQATP7c.Ow8qL8J/8dhBHTlSGA7w5.So1nf8NfrG', 1, 'active', 'EMP001', NULL),
-('Dept', 'Admin', 'dept_admin@lab.edu', '0123456788', '$2y$12$XH2NiUYOmVfI0xQATP7c.Ow8qL8J/8dhBHTlSGA7w5.So1nf8NfrG', 2, 'active', 'EMP002', NULL),
-('John', 'Lecturer', 'lecturer@lab.edu', '0123456787', '$2y$12$XH2NiUYOmVfI0xQATP7c.Ow8qL8J/8dhBHTlSGA7w5.So1nf8NfrG', 3, 'active', 'EMP003', NULL),
-('Jane', 'Staff', 'staff@lab.edu', '0123456786', '$2y$12$XH2NiUYOmVfI0xQATP7c.Ow8qL8J/8dhBHTlSGA7w5.So1nf8NfrG', 4, 'active', 'EMP004', NULL),
-('Alice', 'Student', 'student@lab.edu', '0123456785', '$2y$12$XH2NiUYOmVfI0xQATP7c.Ow8qL8J/8dhBHTlSGA7w5.So1nf8NfrG', 5, 'active', NULL, 'STD001');
+('ผู้ดูแลระบบ', 'สูงสุด', 'admin@lab.edu', '0123456789', '$2y$12$XH2NiUYOmVfI0xQATP7c.Ow8qL8J/8dhBHTlSGA7w5.So1nf8NfrG', 1, 'active', 'EMP001', NULL),
+('ผู้ดูแลระบบ', 'ภาควิชา', 'dept_admin@lab.edu', '0123456788', '$2y$12$XH2NiUYOmVfI0xQATP7c.Ow8qL8J/8dhBHTlSGA7w5.So1nf8NfrG', 2, 'active', 'EMP002', NULL),
+('สมชาย', 'สายเรียน', 'lecturer@lab.edu', '0123456787', '$2y$12$XH2NiUYOmVfI0xQATP7c.Ow8qL8J/8dhBHTlSGA7w5.So1nf8NfrG', 3, 'active', 'EMP003', NULL),
+('สมศรี', 'ใจดี', 'staff@lab.edu', '0123456786', '$2y$12$XH2NiUYOmVfI0xQATP7c.Ow8qL8J/8dhBHTlSGA7w5.So1nf8NfrG', 4, 'active', 'EMP004', NULL),
+('สมศักดิ์', 'รักเรียน', 'student@lab.edu', '0123456785', '$2y$12$XH2NiUYOmVfI0xQATP7c.Ow8qL8J/8dhBHTlSGA7w5.So1nf8NfrG', 5, 'active', NULL, 'STD001');
 
 -- 7. Seed Laboratories (Sample data)
 INSERT INTO `laboratories` (`code`, `name`, `building`, `floor`, `capacity`, `description`, `status`) VALUES
-('LAB101', 'Software Engineering Lab', 'Engineering Building 1', '1st Floor', 30, 'Used for software design, programming, and web development courses.', 'active'),
-('LAB102', 'Networking & Security Lab', 'Engineering Building 1', '1st Floor', 25, 'Equipped with Cisco routers, switches, and network analysis tools.', 'active'),
-('LAB201', 'Artificial Intelligence Lab', 'IT Building', '2nd Floor', 20, 'High-end workstation lab with GPU support for machine learning.', 'active');
+('LAB101', 'ห้องปฏิบัติการวิศวกรรมซอฟต์แวร์', 'อาคารวิศวกรรมศาสตร์ 1', 'ชั้น 1', 30, 'ใช้สำหรับการเรียนการสอนด้านการออกแบบซอฟต์แวร์ การเขียนโปรแกรม และการพัฒนาเว็บ', 'active'),
+('LAB102', 'ห้องปฏิบัติการระบบเครือข่ายและความปลอดภัย', 'อาคารวิศวกรรมศาสตร์ 1', 'ชั้น 1', 25, 'ติดตั้งอุปกรณ์เราเตอร์และสวิตช์ของ Cisco และเครื่องมือวิเคราะห์ระบบเครือข่าย', 'active'),
+('LAB201', 'ห้องปฏิบัติการปัญญาประดิษฐ์', 'อาคารเทคโนโลยีสารสนเทศ', 'ชั้น 2', 20, 'ห้องปฏิบัติการสเปกสูงพร้อมการ์ดจอ GPU สำหรับการเรียนรู้ของเครื่องและปัญญาประดิษฐ์', 'active');
 
 -- 8. Seed Computers (Sample data for LAB101)
 INSERT INTO `computers` (`code`, `name`, `asset_number`, `laboratory_id`, `brand`, `model`, `cpu`, `ram`, `storage`, `operating_system`, `ip_address`, `status`) VALUES
-('COMP101-01', 'SE-Workstation-01', 'ASSET-2026-001', 1, 'Dell', 'OptiPlex 7090', 'Intel Core i7-11700', '16GB DDR4', '512GB NVMe SSD', 'Windows 11 Pro', '192.168.1.10', 'available'),
-('COMP101-02', 'SE-Workstation-02', 'ASSET-2026-002', 1, 'Dell', 'OptiPlex 7090', 'Intel Core i7-11700', '16GB DDR4', '512GB NVMe SSD', 'Windows 11 Pro', '192.168.1.11', 'available'),
-('COMP101-03', 'SE-Workstation-03', 'ASSET-2026-003', 1, 'Dell', 'OptiPlex 7090', 'Intel Core i7-11700', '16GB DDR4', '512GB NVMe SSD', 'Windows 11 Pro', '192.168.1.12', 'maintenance'),
-('COMP101-04', 'SE-Workstation-04', 'ASSET-2026-004', 1, 'Dell', 'OptiPlex 7090', 'Intel Core i7-11700', '16GB DDR4', '512GB NVMe SSD', 'Windows 11 Pro', '192.168.1.13', 'available'),
-('COMP101-05', 'SE-Workstation-05', 'ASSET-2026-005', 1, 'Dell', 'OptiPlex 7090', 'Intel Core i7-11700', '16GB DDR4', '512GB NVMe SSD', 'Windows 11 Pro', '192.168.1.14', 'offline'),
-('COMP102-01', 'NET-Workstation-01', 'ASSET-2026-010', 2, 'HP', 'EliteDesk 800', 'AMD Ryzen 7 5700G', '16GB DDR4', '512GB SSD', 'Ubuntu 22.04 LTS', '192.168.2.10', 'available'),
-('COMP102-02', 'NET-Workstation-02', 'ASSET-2026-011', 2, 'HP', 'EliteDesk 800', 'AMD Ryzen 7 5700G', '16GB DDR4', '512GB SSD', 'Ubuntu 22.04 LTS', '192.168.2.11', 'available'),
-('COMP201-01', 'AI-Workstation-01', 'ASSET-2026-020', 3, 'Lenovo', 'ThinkStation P350', 'Intel Core i9-11900K / NVIDIA RTX 3080', '32GB DDR4', '1TB NVMe SSD', 'Ubuntu 22.04 LTS', '192.168.3.10', 'available');
+('COMP101-01', 'SE-เครื่องคอมพิวเตอร์-01', 'ASSET-2569-001', 1, 'Dell', 'OptiPlex 7090', 'Intel Core i7-11700', '16GB DDR4', '512GB NVMe SSD', 'Windows 11 Pro', '192.168.1.10', 'available'),
+('COMP101-02', 'SE-เครื่องคอมพิวเตอร์-02', 'ASSET-2569-002', 1, 'Dell', 'OptiPlex 7090', 'Intel Core i7-11700', '16GB DDR4', '512GB NVMe SSD', 'Windows 11 Pro', '192.168.1.11', 'available'),
+('COMP101-03', 'SE-เครื่องคอมพิวเตอร์-03', 'ASSET-2569-003', 1, 'Dell', 'OptiPlex 7090', 'Intel Core i7-11700', '16GB DDR4', '512GB NVMe SSD', 'Windows 11 Pro', '192.168.1.12', 'maintenance'),
+('COMP101-04', 'SE-เครื่องคอมพิวเตอร์-04', 'ASSET-2569-004', 1, 'Dell', 'OptiPlex 7090', 'Intel Core i7-11700', '16GB DDR4', '512GB NVMe SSD', 'Windows 11 Pro', '192.168.1.13', 'available'),
+('COMP101-05', 'SE-เครื่องคอมพิวเตอร์-05', 'ASSET-2569-005', 1, 'Dell', 'OptiPlex 7090', 'Intel Core i7-11700', '16GB DDR4', '512GB NVMe SSD', 'Windows 11 Pro', '192.168.1.14', 'offline'),
+('COMP102-01', 'NET-เครื่องคอมพิวเตอร์-01', 'ASSET-2569-010', 2, 'HP', 'EliteDesk 800', 'AMD Ryzen 7 5700G', '16GB DDR4', '512GB SSD', 'Ubuntu 22.04 LTS', '192.168.2.10', 'available'),
+('COMP102-02', 'NET-เครื่องคอมพิวเตอร์-02', 'ASSET-2569-011', 2, 'HP', 'EliteDesk 800', 'AMD Ryzen 7 5700G', '16GB DDR4', '512GB SSD', 'Ubuntu 22.04 LTS', '192.168.2.11', 'available'),
+('COMP201-01', 'AI-เครื่องคอมพิวเตอร์-01', 'ASSET-2569-020', 3, 'Lenovo', 'ThinkStation P350', 'Intel Core i9-11900K / NVIDIA RTX 3080', '32GB DDR4', '1TB NVMe SSD', 'Ubuntu 22.04 LTS', '192.168.3.10', 'available');
