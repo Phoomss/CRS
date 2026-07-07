@@ -20,10 +20,11 @@ class ReservationRepository {
         $stmt = $this->db->prepare("
             SELECT r.*, 
                    u.first_name, u.last_name, u.email, u.student_id, u.employee_id,
-                   l.name as laboratory_name, l.code as laboratory_code,
+                   l.name as laboratory_name, l.code as laboratory_code, l.building, l.floor,
                    rs.name as status_name,
                    cd.computer_id, cd.check_in_time, cd.check_out_time,
                    c.code as computer_code, c.name as computer_name, c.asset_number as computer_asset_number,
+                   c.ip_address, c.cpu, c.ram, c.storage, c.operating_system,
                    approver.first_name as approver_first_name, approver.last_name as approver_last_name
             FROM reservations r
             JOIN users u ON r.user_id = u.id

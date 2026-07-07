@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Repositories\ReservationRepository;
 use App\Repositories\ComputerRepository;
 use App\Repositories\LaboratoryRepository;
+use App\Repositories\UserRepository;
 use App\Core\Session;
 use Exception;
 

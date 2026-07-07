@@ -44,7 +44,7 @@
         </form>
 
         <div class="table-responsive">
-            <table class="table table-dark table-hover align-middle m-0">
+            <table class="table table-hover align-middle m-0">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -66,11 +66,11 @@
                             <tr>
                                 <td><span class="text-secondary small fw-bold">#<?= $r['id'] ?></span></td>
                                 <td>
-                                    <div class="fw-semibold text-white"><?= esc($r['first_name'] . ' ' . $r['last_name']) ?></div>
+                                    <div class="fw-semibold"><?= esc($r['first_name'] . ' ' . $r['last_name']) ?></div>
                                     <div class="small text-secondary"><?= esc($r['email']) ?></div>
                                 </td>
                                 <td>
-                                    <span class="fw-semibold text-white"><?= esc($r['laboratory_code']) ?></span>
+                                    <span class="fw-semibold"><?= esc($r['laboratory_code']) ?></span>
                                 </td>
                                 <td>
                                     <?php if ($r['computer_code']): ?>
@@ -81,7 +81,7 @@
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <div class="small text-white fw-medium"><?= date('M d, Y', strtotime($r['start_time'])) ?></div>
+                                    <div class="small fw-medium"><?= date('M d, Y', strtotime($r['start_time'])) ?></div>
                                     <div class="small text-secondary"><?= date('H:i A', strtotime($r['start_time'])) ?> - <?= date('H:i A', strtotime($r['end_time'])) ?></div>
                                 </td>
                                 <td class="text-center">
@@ -89,16 +89,16 @@
                                         // Pending=1, Approved=2, Rejected=3, Cancelled=4, Completed=5, Expired=6
                                         $class = 'bg-warning text-dark';
                                         if ($r['status_id'] == 2) $class = 'bg-info text-dark';
-                                        if ($r['status_id'] == 3) $class = 'bg-danger';
-                                        if ($r['status_id'] == 4) $class = 'bg-secondary';
-                                        if ($r['status_id'] == 5) $class = 'bg-success';
-                                        if ($r['status_id'] == 6) $class = 'bg-dark border border-secondary text-secondary';
+                                        if ($r['status_id'] == 3) $class = 'bg-danger text-white';
+                                        if ($r['status_id'] == 4) $class = 'bg-secondary text-white';
+                                        if ($r['status_id'] == 5) $class = 'bg-success text-white';
+                                        if ($r['status_id'] == 6) $class = 'bg-light border border-secondary text-secondary';
                                     ?>
                                     <span class="badge badge-status <?= $class ?>"><?= esc($r['status_name']) ?></span>
                                 </td>
                                 <td class="text-end">
                                     <div class="d-flex justify-content-end gap-2">
-                                        <a href="/reservations/view/<?= $r['id'] ?>" class="btn btn-sm btn-outline-light" title="View Reservation Details"><i class="fa-solid fa-eye"></i></a>
+                                        <a href="/reservations/view/<?= $r['id'] ?>" class="btn btn-sm btn-outline-indigo" title="View Reservation Details"><i class="fa-solid fa-eye"></i></a>
                                         
                                         <?php if ($r['status_id'] == 2 && $r['user_id'] == auth()['id']): ?>
                                             <!-- Check In Action -->
@@ -125,7 +125,7 @@
         <!-- Pagination -->
         <?php if ($totalPages > 1): ?>
             <nav class="mt-4">
-                <ul class="pagination pagination-dark justify-content-center m-0">
+                <ul class="pagination justify-content-center m-0">
                     <li class="page-item <?= $page <= 1 ? 'disabled' : '' ?>">
                         <a class="page-link" href="?<?= http_build_query(array_merge($filters, ['page' => $page - 1])) ?>"><i class="fa-solid fa-chevron-left"></i></a>
                     </li>

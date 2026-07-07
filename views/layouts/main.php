@@ -382,6 +382,14 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
             border: 1px solid rgba(0, 0, 0, 0.08) !important;
         }
 
+        /* Override text-white inside cards and tables to prevent white-on-white text in light mode */
+        .card .text-white:not(.badge):not(.btn):not([class*="bg-"]),
+        .card [class*="text-white"]:not(.badge):not(.btn):not([class*="bg-"]),
+        .table .text-white:not(.badge):not(.btn):not([class*="bg-"]),
+        .table [class*="text-white"]:not(.badge):not(.btn):not([class*="bg-"]) {
+            color: var(--text-primary) !important;
+        }
+
         /* Custom Badges */
         .badge-status {
             font-size: 0.75rem;
