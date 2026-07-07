@@ -13,13 +13,13 @@
     
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
-            --glass-bg: rgba(30, 41, 59, 0.45);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent-color: #818cf8;
-            --accent-hover: #6366f1;
+            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(0, 0, 0, 0.08);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-color: #6366f1;
+            --accent-hover: #4f46e5;
         }
 
         body {
@@ -42,7 +42,7 @@
             position: absolute;
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(0,0,0,0) 70%);
             top: 10%;
             left: 10%;
             z-index: -1;
@@ -52,7 +52,7 @@
             position: absolute;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, rgba(0,0,0,0) 70%);
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.06) 0%, rgba(0,0,0,0) 70%);
             bottom: 10%;
             right: 10%;
             z-index: -1;
@@ -72,7 +72,7 @@
             border: 1px solid var(--glass-border);
             border-radius: 20px;
             padding: 40px 35px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
         }
 
         .auth-logo {
@@ -84,7 +84,7 @@
             font-size: 3rem;
             color: var(--accent-color);
             margin-bottom: 15px;
-            filter: drop-shadow(0 0 10px rgba(129, 140, 248, 0.5));
+            filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.25));
             animation: pulse 2s infinite ease-in-out;
         }
 
@@ -93,6 +93,7 @@
             letter-spacing: -0.5px;
             font-size: 1.6rem;
             margin: 0;
+            color: #0f172a;
         }
 
         .auth-logo p {
@@ -111,15 +112,15 @@
         }
 
         .input-group {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.12);
             border-radius: 12px;
             transition: all 0.3s ease;
         }
 
         .input-group:focus-within {
             border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
         }
 
         .input-group-text {
@@ -146,6 +147,7 @@
 
         .btn-primary {
             background: linear-gradient(135deg, var(--accent-color) 0%, #4f46e5 100%);
+            color: #fff;
             border: none;
             border-radius: 12px;
             padding: 12px;
@@ -156,8 +158,9 @@
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
             background: linear-gradient(135deg, var(--accent-hover) 0%, #4338ca 100%);
+            color: #fff;
         }
 
         .auth-footer {
@@ -165,6 +168,13 @@
             margin-top: 25px;
             font-size: 0.85rem;
             color: var(--text-secondary);
+        }
+
+        .auth-footer code {
+            color: #4f46e5;
+            background: rgba(99, 102, 241, 0.06);
+            padding: 2px 6px;
+            border-radius: 4px;
         }
 
         .auth-footer a {
@@ -177,6 +187,10 @@
         .auth-footer a:hover {
             color: var(--text-primary);
             text-decoration: underline;
+        }
+
+        .btn-close-white {
+            filter: none !important;
         }
 
         /* Animations */

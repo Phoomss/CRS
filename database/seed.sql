@@ -60,13 +60,13 @@ INSERT INTO `settings` (`key`, `value`) VALUES
 ('timezone', 'Asia/Bangkok');
 
 -- 6. Seed Default Users (Password is 'admin123' for all)
--- Password bcrypt hash for 'admin123' is '$2y$10$e0myzXyK.4w5tJqVv/XJ4O7Fh8s9B0vV6bW3OQjT1nF.v/2Uv1H8a'
+-- Password bcrypt hash for 'admin123' is '$2y$12$XH2NiUYOmVfI0xQATP7c.Ow8qL8J/8dhBHTlSGA7w5.So1nf8NfrG'
 INSERT INTO `users` (`first_name`, `last_name`, `email`, `phone_number`, `password_hash`, `role_id`, `status`, `employee_id`, `student_id`) VALUES
-('Super', 'Admin', 'admin@lab.edu', '0123456789', '$2y$10$e0myzXyK.4w5tJqVv/XJ4O7Fh8s9B0vV6bW3OQjT1nF.v/2Uv1H8a', 1, 'active', 'EMP001', NULL),
-('Dept', 'Admin', 'dept_admin@lab.edu', '0123456788', '$2y$10$e0myzXyK.4w5tJqVv/XJ4O7Fh8s9B0vV6bW3OQjT1nF.v/2Uv1H8a', 2, 'active', 'EMP002', NULL),
-('John', 'Lecturer', 'lecturer@lab.edu', '0123456787', '$2y$10$e0myzXyK.4w5tJqVv/XJ4O7Fh8s9B0vV6bW3OQjT1nF.v/2Uv1H8a', 3, 'active', 'EMP003', NULL),
-('Jane', 'Staff', 'staff@lab.edu', '0123456786', '$2y$10$e0myzXyK.4w5tJqVv/XJ4O7Fh8s9B0vV6bW3OQjT1nF.v/2Uv1H8a', 4, 'active', 'EMP004', NULL),
-('Alice', 'Student', 'student@lab.edu', '0123456785', '$2y$10$e0myzXyK.4w5tJqVv/XJ4O7Fh8s9B0vV6bW3OQjT1nF.v/2Uv1H8a', 5, 'active', NULL, 'STD001');
+('Super', 'Admin', 'admin@lab.edu', '0123456789', '$2y$12$XH2NiUYOmVfI0xQATP7c.Ow8qL8J/8dhBHTlSGA7w5.So1nf8NfrG', 1, 'active', 'EMP001', NULL),
+('Dept', 'Admin', 'dept_admin@lab.edu', '0123456788', '$2y$12$XH2NiUYOmVfI0xQATP7c.Ow8qL8J/8dhBHTlSGA7w5.So1nf8NfrG', 2, 'active', 'EMP002', NULL),
+('John', 'Lecturer', 'lecturer@lab.edu', '0123456787', '$2y$12$XH2NiUYOmVfI0xQATP7c.Ow8qL8J/8dhBHTlSGA7w5.So1nf8NfrG', 3, 'active', 'EMP003', NULL),
+('Jane', 'Staff', 'staff@lab.edu', '0123456786', '$2y$12$XH2NiUYOmVfI0xQATP7c.Ow8qL8J/8dhBHTlSGA7w5.So1nf8NfrG', 4, 'active', 'EMP004', NULL),
+('Alice', 'Student', 'student@lab.edu', '0123456785', '$2y$12$XH2NiUYOmVfI0xQATP7c.Ow8qL8J/8dhBHTlSGA7w5.So1nf8NfrG', 5, 'active', NULL, 'STD001');
 
 -- 7. Seed Laboratories (Sample data)
 INSERT INTO `laboratories` (`code`, `name`, `building`, `floor`, `capacity`, `description`, `status`) VALUES
