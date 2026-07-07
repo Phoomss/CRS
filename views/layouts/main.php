@@ -28,14 +28,14 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
         :root {
             --sidebar-width: 260px;
             --navbar-height: 60px;
-            --bg-color: #0b0f19;
-            --card-bg: #111827;
-            --card-border: rgba(255, 255, 255, 0.05);
-            --text-primary: #f3f4f6;
-            --text-secondary: #9ca3af;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --card-border: rgba(0, 0, 0, 0.06);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
             --accent-color: #6366f1;
             --accent-hover: #4f46e5;
-            --sidebar-bg: #0f172a;
+            --sidebar-bg: #ffffff;
         }
 
         body {
@@ -56,7 +56,7 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
         #sidebar {
             width: var(--sidebar-width);
             background-color: var(--sidebar-bg);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(0, 0, 0, 0.06);
             transition: all 0.3s ease;
             z-index: 1000;
             display: flex;
@@ -72,10 +72,10 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
             display: flex;
             align-items: center;
             padding: 0 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
             font-size: 1.25rem;
             font-weight: 700;
-            color: #fff;
+            color: #0f172a;
             text-decoration: none;
         }
 
@@ -86,7 +86,7 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
 
         .sidebar-user {
             padding: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
             display: flex;
             align-items: center;
         }
@@ -102,7 +102,7 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
         .sidebar-user .user-name {
             font-weight: 600;
             font-size: 0.9rem;
-            color: #fff;
+            color: #0f172a;
         }
 
         .sidebar-user .user-role {
@@ -141,8 +141,8 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
         }
 
         .sidebar-link:hover, .sidebar-item.active .sidebar-link {
-            background-color: rgba(99, 102, 241, 0.1);
-            color: #fff;
+            background-color: rgba(99, 102, 241, 0.06);
+            color: var(--accent-color);
         }
 
         .sidebar-item.active .sidebar-link i {
@@ -159,8 +159,8 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
 
         .top-navbar {
             height: var(--navbar-height);
-            background-color: var(--sidebar-bg);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: #ffffff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -177,7 +177,7 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
         }
 
         .toggle-btn:hover {
-            color: #fff;
+            color: #000;
         }
 
         .navbar-actions {
@@ -195,7 +195,7 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
         }
 
         .nav-dropdown-btn:hover {
-            color: #fff;
+            color: #000;
         }
 
         .nav-dropdown-btn .badge {
@@ -218,13 +218,13 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
             background-color: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
             color: var(--text-primary);
         }
 
         .card-header {
             background-color: transparent;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
             padding: 20px;
             font-weight: 600;
             display: flex;
@@ -236,44 +236,49 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
             padding: 25px;
         }
 
-        /* Modal styling overrides for dark mode */
+        /* Modal styling overrides for light mode */
         .modal-content {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
             color: var(--text-primary);
             border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
         }
 
         .modal-header {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .modal-header .btn-close {
+            filter: none !important;
         }
 
         .modal-footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
         }
 
         .form-control, .form-select {
-            background-color: #0f172a;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff;
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            color: #0f172a;
             border-radius: 10px;
             padding: 10px 15px;
         }
 
         .form-control:focus, .form-select:focus {
-            background-color: #0f172a;
-            color: #fff;
+            background-color: #ffffff;
+            color: #0f172a;
             border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
         }
 
         .form-control::placeholder {
-            color: #4b5563;
+            color: #94a3b8;
         }
 
         .table {
             color: var(--text-primary);
-            border-color: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 0, 0, 0.06);
         }
 
         .table th {
@@ -282,13 +287,68 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
             font-size: 0.8rem;
             letter-spacing: 0.5px;
             color: var(--text-secondary);
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.08);
         }
 
         .table td {
             vertical-align: middle;
             font-size: 0.9rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Force dark tables/dropdowns in views to render as light mode */
+        .table-dark {
+            --bs-table-bg: #ffffff !important;
+            --bs-table-color: #0f172a !important;
+            --bs-table-border-color: rgba(0, 0, 0, 0.05) !important;
+            --bs-table-hover-bg: rgba(0, 0, 0, 0.02) !important;
+        }
+
+        .dropdown-menu-dark {
+            --bs-dropdown-bg: #ffffff !important;
+            --bs-dropdown-color: #0f172a !important;
+            --bs-dropdown-link-color: #475569 !important;
+            --bs-dropdown-link-hover-bg: rgba(99, 102, 241, 0.06) !important;
+            --bs-dropdown-link-hover-color: var(--accent-color) !important;
+            border: 1px solid rgba(0, 0, 0, 0.08) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+        }
+
+        .dropdown-header {
+            color: #94a3b8 !important;
+            border-bottom-color: rgba(0, 0, 0, 0.05) !important;
+        }
+
+        .dropdown-divider {
+            border-color: rgba(0, 0, 0, 0.06) !important;
+        }
+
+        .bg-dark.bg-opacity-20 {
+            background-color: #f1f5f9 !important;
+            border-color: rgba(0, 0, 0, 0.05) !important;
+        }
+
+        .bg-dark {
+            background-color: #f8fafc !important;
+        }
+
+        .pc-card {
+            background-color: #ffffff !important;
+            border-color: rgba(0, 0, 0, 0.08) !important;
+        }
+
+        .pc-card label {
+            color: #0f172a !important;
+        }
+
+        .activity-timeline .text-white {
+            color: #0f172a !important;
+        }
+
+        .swal2-popup {
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1) !important;
         }
 
         /* Custom Badges */
