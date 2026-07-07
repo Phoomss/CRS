@@ -1,65 +1,65 @@
 <div class="row g-4 mb-4">
     <!-- Stat 1: Available computers -->
     <div class="col-md-3">
-        <div class="card p-3 border-0 h-100" style="background: linear-gradient(135deg, #1e1b4b 0%, #1e293b 100%);">
+        <div class="card p-3 border-0 h-100" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1px solid rgba(34, 197, 94, 0.2) !important;">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
-                    <span class="text-secondary small fw-semibold text-uppercase">Workstations Free</span>
-                    <h3 class="mt-1 mb-0 fw-bold"><?= $availableCompCount ?> <span class="small text-muted" style="font-size: 0.9rem;">/ <?= $computersCount ?></span></h3>
+                    <span class="text-success small fw-semibold text-uppercase" style="color: #166534 !important;">Workstations Free</span>
+                    <h3 class="mt-1 mb-0 fw-bold" style="color: #14532d !important;"><?= $availableCompCount ?> <span class="small" style="color: #166534; opacity: 0.7; font-size: 0.9rem;">/ <?= $computersCount ?></span></h3>
                 </div>
-                <div class="rounded-circle p-3" style="background: rgba(34, 197, 94, 0.15); color: #22c55e;">
+                <div class="rounded-circle p-3" style="background: rgba(34, 197, 94, 0.12); color: #15803d;">
                     <i class="fa-solid fa-circle-check fa-xl"></i>
                 </div>
             </div>
-            <div class="mt-3 small text-muted">Active and available for booking</div>
+            <div class="mt-3 small" style="color: #166534; opacity: 0.85;">Active and available for booking</div>
         </div>
     </div>
 
     <!-- Stat 2: Active / Approved Bookings -->
     <div class="col-md-3">
-        <div class="card p-3 border-0 h-100" style="background: linear-gradient(135deg, #1e1b4b 0%, #1e293b 100%);">
+        <div class="card p-3 border-0 h-100" style="background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%); border: 1px solid rgba(99, 102, 241, 0.2) !important;">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
-                    <span class="text-secondary small fw-semibold text-uppercase">Approved Seats</span>
-                    <h3 class="mt-1 mb-0 fw-bold"><?= $approvedResCount ?></h3>
+                    <span class="text-indigo small fw-semibold text-uppercase" style="color: #3730a3 !important;">Approved Seats</span>
+                    <h3 class="mt-1 mb-0 fw-bold" style="color: #1e1b4b !important;"><?= $approvedResCount ?></h3>
                 </div>
-                <div class="rounded-circle p-3" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">
+                <div class="rounded-circle p-3" style="background: rgba(99, 102, 241, 0.12); color: #4f46e5;">
                     <i class="fa-regular fa-calendar-check fa-xl"></i>
                 </div>
             </div>
-            <div class="mt-3 small text-muted">Confirmed schedules awaiting check-in</div>
+            <div class="mt-3 small" style="color: #3730a3; opacity: 0.85;">Confirmed schedules awaiting check-in</div>
         </div>
     </div>
 
     <!-- Stat 3: Pending Approvals -->
     <div class="col-md-3">
-        <div class="card p-3 border-0 h-100" style="background: linear-gradient(135deg, #1e1b4b 0%, #1e293b 100%);">
+        <div class="card p-3 border-0 h-100" style="background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 1px solid rgba(245, 158, 11, 0.2) !important;">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
-                    <span class="text-secondary small fw-semibold text-uppercase">Pending Review</span>
-                    <h3 class="mt-1 mb-0 fw-bold"><?= $pendingResCount ?></h3>
+                    <span class="text-warning small fw-semibold text-uppercase" style="color: #b45309 !important;">Pending Review</span>
+                    <h3 class="mt-1 mb-0 fw-bold" style="color: #78350f !important;"><?= $pendingResCount ?></h3>
                 </div>
-                <div class="rounded-circle p-3" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;">
+                <div class="rounded-circle p-3" style="background: rgba(245, 158, 11, 0.12); color: #d97706;">
                     <i class="fa-solid fa-hourglass-half fa-xl"></i>
                 </div>
             </div>
-            <div class="mt-3 small text-muted">Requires administrator approval</div>
+            <div class="mt-3 small" style="color: #b45309; opacity: 0.85;">Requires administrator approval</div>
         </div>
     </div>
 
     <!-- Stat 4: Workstations under maintenance -->
     <div class="col-md-3">
-        <div class="card p-3 border-0 h-100" style="background: linear-gradient(135deg, #1e1b4b 0%, #1e293b 100%);">
+        <div class="card p-3 border-0 h-100" style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border: 1px solid rgba(239, 68, 68, 0.2) !important;">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
-                    <span class="text-secondary small fw-semibold text-uppercase">Under Maintenance</span>
-                    <h3 class="mt-1 mb-0 fw-bold"><?= $maintenanceCompCount ?> <span class="small text-muted" style="font-size: 0.9rem;">/ <?= $offlineCompCount ?> off</span></h3>
+                    <span class="text-danger small fw-semibold text-uppercase" style="color: #c2410c !important;">Under Maintenance</span>
+                    <h3 class="mt-1 mb-0 fw-bold" style="color: #7f1d1d !important;"><?= $maintenanceCompCount ?> <span class="small" style="color: #7f1d1d; opacity: 0.7; font-size: 0.9rem;">/ <?= $offlineCompCount ?> off</span></h3>
                 </div>
-                <div class="rounded-circle p-3" style="background: rgba(239, 68, 68, 0.15); color: #ef4444;">
+                <div class="rounded-circle p-3" style="background: rgba(239, 68, 68, 0.12); color: #dc2626;">
                     <i class="fa-solid fa-screwdriver-wrench fa-xl"></i>
                 </div>
             </div>
-            <div class="mt-3 small text-muted">Offline workstations being serviced</div>
+            <div class="mt-3 small" style="color: #c2410c; opacity: 0.85;">Offline workstations being serviced</div>
         </div>
     </div>
 </div>

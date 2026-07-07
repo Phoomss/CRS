@@ -7,6 +7,9 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+// Start output buffer with the Thai translator callback
+ob_start([\App\Helpers\Translator::class, 'translate']);
+
 use App\Core\Request;
 use App\Core\Router;
 use App\Core\Session;

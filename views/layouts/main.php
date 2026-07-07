@@ -387,6 +387,50 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
+        /* Mobile Responsiveness styling rules */
+        @media (max-width: 991.98px) {
+            #sidebar {
+                position: fixed;
+                height: 100vh;
+                margin-left: calc(-1 * var(--sidebar-width));
+                box-shadow: 15px 0 45px rgba(0, 0, 0, 0.08);
+            }
+            #sidebar.show-mobile {
+                margin-left: 0 !important;
+            }
+            #sidebar.collapsed {
+                margin-left: calc(-1 * var(--sidebar-width));
+            }
+            #content-wrapper {
+                width: 100%;
+                min-width: 0;
+            }
+            .main-content {
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 575.98px) {
+            .top-navbar {
+                padding: 0 15px;
+            }
+            .navbar-actions {
+                gap: 10px;
+            }
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .card-header .d-flex, .card-header .gap-2 {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .card-body {
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -550,9 +594,15 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
                 $('#loader').hide();
             }, 500);
 
-            // Toggle Sidebar
+            // Toggle Sidebar (Responsive)
             $('#sidebar-toggle').on('click', function() {
-                $('#sidebar').toggleClass('collapsed');
+                if ($(window).width() < 992) {
+                    $('#sidebar').removeClass('collapsed');
+                    $('#sidebar').toggleClass('show-mobile');
+                } else {
+                    $('#sidebar').removeClass('show-mobile');
+                    $('#sidebar').toggleClass('collapsed');
+                }
             });
 
             // Auto Active Sidebar Link based on URL path
