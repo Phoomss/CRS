@@ -594,7 +594,7 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
                             <i class="fa-regular fa-user"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" style="border-radius: 12px;">
-                            <li><a class="dropdown-item" href="/settings"><i class="fa-solid fa-key me-2 text-muted"></i> Security Profile</a></li>
+                            <li><a class="dropdown-item" href="/settings/profile"><i class="fa-solid fa-key me-2 text-muted"></i> Security Profile</a></li>
                             <li><hr class="dropdown-divider border-secondary"></li>
                             <li>
                                 <form action="/logout" method="POST">

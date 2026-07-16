@@ -97,6 +97,7 @@ $router->get('settings', [App\Controllers\SettingController::class, 'index'], [A
 $router->post('settings/update', [App\Controllers\SettingController::class, 'update'], [AuthMiddleware::class, AdminMiddleware::class, CSRFMiddleware::class]);
 $router->get('settings/backup', [App\Controllers\SettingController::class, 'backup'], [AuthMiddleware::class, AdminMiddleware::class]);
 $router->post('settings/restore', [App\Controllers\SettingController::class, 'restore'], [AuthMiddleware::class, AdminMiddleware::class, CSRFMiddleware::class]);
+$router->get('settings/profile', [App\Controllers\SettingController::class, 'profile'], [AuthMiddleware::class]);
 $router->post('settings/change-password', [App\Controllers\AuthController::class, 'changePassword'], [AuthMiddleware::class, CSRFMiddleware::class]);
 
 // 6. Resolve Route

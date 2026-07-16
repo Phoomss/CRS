@@ -165,4 +165,11 @@ class SettingController extends Controller {
             $this->redirect('/settings');
         }
     }
+
+    /**
+     * Show personal security profile view.
+     */
+    public function profile(): void {
+        $this->render('settings.profile');
+    }
 }
