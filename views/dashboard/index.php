@@ -79,6 +79,62 @@
         border: 2px solid #ffffff;
     }
 
+    /* FullCalendar Style Customizations */
+    .fc-theme-bootstrap5 {
+        border: none !important;
+    }
+    .fc-theme-bootstrap5 .fc-scrollgrid {
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    .fc-col-header-cell {
+        background-color: #f8fafc !important;
+        padding: 10px 0 !important;
+        font-weight: 600 !important;
+        color: #475569 !important;
+        font-size: 0.85rem;
+        border-bottom: 2px solid #e2e8f0 !important;
+    }
+    .fc-daygrid-event {
+        border-radius: 6px !important;
+        padding: 3px 6px !important;
+        font-size: 0.78rem !important;
+        font-weight: 500 !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+    .fc-list {
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 12px !important;
+        overflow: hidden;
+    }
+    .fc-list-day-cushion {
+        background-color: #f8fafc !important;
+        padding: 12px 18px !important;
+    }
+    .fc-list-day-text, .fc-list-day-side-text {
+        font-weight: 700 !important;
+        color: #334155 !important;
+        font-size: 0.88rem;
+    }
+    .fc-list-event td {
+        padding: 12px 18px !important;
+        border-bottom: 1px solid #f1f5f9 !important;
+    }
+    .fc-list-event-time {
+        font-weight: 600;
+        color: #475569 !important;
+        font-size: 0.85rem;
+    }
+    .fc-list-event-title {
+        font-weight: 600;
+        color: #1e293b !important;
+        font-size: 0.88rem;
+    }
+    .fc-list-event-dot {
+        border-width: 5px !important;
+    }
+
     /* Responsive overrides for mobile */
     @media (max-width: 575.98px) {
         .dashboard-card-header {
@@ -96,6 +152,29 @@
         }
         .stat-card {
             padding: 16px !important;
+        }
+    }
+
+    /* Mobile-specific calendar optimizations */
+    @media (max-width: 767.98px) {
+        .fc .fc-toolbar {
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+        .fc .fc-toolbar-title {
+            font-size: 1.15rem !important;
+            font-weight: 700;
+        }
+        .fc .fc-button {
+            padding: 0.35rem 0.6rem !important;
+            font-size: 0.78rem !important;
+        }
+        .fc-list-event td {
+            padding: 10px 12px !important;
+        }
+        .fc-list-day-cushion {
+            padding: 10px 12px !important;
         }
     }
 </style>
