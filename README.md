@@ -1,98 +1,100 @@
-# Computer Reservation Management System (CRMS)
+# ระบบจัดการการจองเครื่องคอมพิวเตอร์ (Computer Reservation Management System - CRMS)
 
-A complete, production-ready, secure, and responsive web application built using **PHP (PDO, MVC, OOP)** and a modern **Bootstrap 5 / AdminLTE 3** user interface. Designed for department computer laboratories to handle workstation bookings, RBAC authorization, approvals, check-ins/outs, and reports.
-
----
-
-## 🌟 Key Features
-
-1. **Role-Based Access Control (RBAC)**: Supports Super Admin, Dept Admin, Lecturer, Staff, and Student accounts with granular permission checks.
-2. **Prevent Double Bookings**: Database transaction locks and time-overlapping mathematical queries prevent overlapping schedules for the same workstation.
-3. **Interactive Booking Calendar**: Integrated with `FullCalendar.js` showing schedules color-coded by reservation status.
-4. **Check-In/Check-Out System**: Allows users to check in up to 15 mins before booking starts. Releases inactive seats automatically if they fail to check in within the configured window.
-5. **Asset QR/Barcode Printing**: Generates sticker labels dynamically using `JsBarcode` and `QR Server` APIs.
-6. **Programmatic DB Backups**: Generates and downloads SQL dumps directly from the admin dashboard without shell dependencies, and handles restoring sql backup uploads.
-7. **CSV Exports & Reports**: Streams clean CSV Excel-compatible data for computers, laboratories, and user performances.
+แอปพลิเคชันเว็บระดับองค์กรที่มีความปลอดภัย รวดเร็ว และรองรับการแสดงผลบนทุกอุปกรณ์ (Responsive Web App) พัฒนาขึ้นโดยใช้ **PHP (PDO, MVC, OOP)** และได้รับการปรับปรุงส่วนติดต่อผู้ใช้งาน (UI) เป็นธีมสีสว่างระดับพรีเมียม (Premium Light Theme) พร้อมการแปลภาษาไทยอย่างสมบูรณ์แบบ ออกแบบมาสำหรับห้องปฏิบัติการคอมพิวเตอร์ของสถาบันการศึกษาเพื่อจัดการการจองที่นั่งใช้งานคอมพิวเตอร์, การอนุมัติ, ระบบเช็คอินเข้าใช้งาน/เช็คเอาท์ออก และการออกรายงานสถิติต่าง ๆ
 
 ---
 
-## 🔑 Default Test Accounts
+## 🌟 คุณสมบัติเด่นของระบบ (Key Features)
 
-Use the password **`admin123`** to log in to any account:
+1. **การควบคุมสิทธิ์ตามบทบาท (RBAC)**: รองรับสิทธิ์ผู้ใช้ 5 ระดับ ได้แก่ ผู้ดูแลระบบสูงสุด (Super Admin), ผู้ดูแลระบบภาควิชา (Dept Admin), อาจารย์ (Lecturer), เจ้าหน้าที่ห้องแล็บ (Staff) และนักศึกษา (Student) โดยมีการตรวจสอบสิทธิ์อย่างละเอียดในทุกส่วนใช้งาน
+2. **การป้องกันการจองซ้ำ (Prevent Double Bookings)**: ใช้กลไก Database Transaction Locks และการคำนวณช่วงเวลาเหลื่อมกันทางคณิตศาสตร์ในระดับคิวรี เพื่อป้องกันไม่ให้ผู้ใช้จองเครื่องคอมพิวเตอร์เดียวกันในวันและเวลาเดียวกันอย่างเด็ดขาด
+3. **ปฏิทินจองเครื่องแบบโต้ตอบ (Interactive Calendar)**: เชื่อมต่อการแสดงผลร่วมกับ `FullCalendar.js` แสดงตารางเวลาในรูปแบบภาษาไทยและแยกแถบสีอย่างสวยงามตามสถานะการจอง (เช่น รอนุมัติ, อนุมัติแล้ว, เสร็จสิ้น, ยกเลิก)
+4. **ระบบเช็คอิน/เช็คเอาท์ (Check-in/Check-out)**: ผู้ใช้งานสามารถกดเช็คอินเข้าใช้งานเครื่องได้ก่อนเวลาเริ่มจอง 15 นาที และมีระบบยกเลิกสิทธิ์จองอัตโนมัติหากผู้ใช้งานไม่ทำการเช็คอินเข้าเครื่องภายในเวลาที่ระบบกำหนด
+5. **การพิมพ์รหัส QR/Barcode (QR/Barcode Printing)**: รองรับการสร้างและพิมพ์สติกเกอร์รหัสบาร์โค้ดรวมถึงคิวอาร์โค้ดของเครื่องคอมพิวเตอร์ผ่านทาง API ของ `JsBarcode` และ `QR Server` เพื่อใช้ติดหน้าเครื่องคอมพิวเตอร์จริง
+6. **การสำรองและกู้คืนฐานข้อมูลผ่านระบบเว็บ (DB Backup & Restore)**: ผู้ดูแลระบบสามารถดาวน์โหลดไฟล์สำรองข้อมูล (SQL Dump) และอัปโหลดกู้คืน (Restore) ระบบผ่านหน้าเว็บได้อย่างสะดวก รวดเร็ว และปลอดภัย โดยไม่ต้องใช้สิทธิ์ระดับ Shell/Terminal
+7. **การส่งออกรายงาน (CSV Export)**: สามารถสตรีมส่งออกข้อมูลเครื่องคอมพิวเตอร์ ห้องปฏิบัติการ และข้อมูลการเข้าใช้ของผู้ใช้งานเป็นไฟล์ CSV ที่รองรับโปรแกรม Microsoft Excel ได้ทันที
+8. **ระบบการตั้งค่าความปลอดภัยบัญชีส่วนบุคคล (Security Profile)**: รองรับการเข้าถึงหน้าเปลี่ยนรหัสผ่านส่วนตัวสำหรับผู้ใช้งานทุกระดับสิทธิ์ได้อย่างเป็นสัดส่วน ปลอดภัย และไม่ปะปนกับแผงตั้งค่าหลักของระบบ
 
-| Role | Email | User Type |
+---
+
+## 🔑 บัญชีผู้ใช้งานทดสอบเริ่มต้น (Default Test Accounts)
+
+ทุกบัญชีใช้รหัสผ่านเดียวกันคือ: **`admin123`**
+
+| สิทธิ์การใช้งาน (Role) | อีเมล (Email) | รายละเอียดและสิทธิ์การใช้งาน |
 |---|---|---|
-| **Super Administrator** | `admin@lab.edu` | Full System Control |
-| **Department Administrator** | `dept_admin@lab.edu` | Lab & Reservation Control |
-| **Lecturer** | `lecturer@lab.edu` | Auto-Approved bookings |
-| **Staff** | `staff@lab.edu` | Approvals & Asset maintenance |
-| **Student** | `student@lab.edu` | Standard seat reservations |
+| **ผู้ดูแลระบบสูงสุด (Super Administrator)** | `admin@lab.edu` | ควบคุมทุกส่วนและจัดการระบบทั้งหมด |
+| **ผู้ดูแลระบบภาควิชา (Department Administrator)** | `dept_admin@lab.edu` | จัดการห้องปฏิบัติการ เครื่องคอมพิวเตอร์ และการอนุมัติการจอง |
+| **อาจารย์ (Lecturer)** | `lecturer@lab.edu` | ยื่นคำขอจองเครื่องคอมพิวเตอร์ (ได้รับอนุมัติทันทีโดยอัตโนมัติ) |
+| **เจ้าหน้าที่ห้องปฏิบัติการ (Staff)** | `staff@lab.edu` | จัดการการจอง ตรวจสอบและดูแลรักษาสภาพเครื่องคอมพิวเตอร์ |
+| **นักศึกษา (Student)** | `student@lab.edu` | ยื่นจองเครื่องคอมพิวเตอร์ตามรอบเวลาปกติ |
 
 ---
 
-## 🚀 Installation & Running
+## 🚀 ขั้นตอนการติดตั้งและรันระบบ (Installation & Running)
 
-### 1. Prerequisites
-* **PHP 8.3+** (Extensions: `pdo_mysql`, `mbstring`, `openssl`)
-* **MySQL 8.0+**
-* **Composer**
+### 1. สิ่งที่จำเป็นต้องมีในเครื่อง (Prerequisites)
+* **PHP 8.3 ขึ้นไป** (ส่วนขยายที่ต้องการ: `pdo_mysql`, `mbstring`, `openssl`)
+* **MySQL 8.0 ขึ้นไป**
+* **Composer** (สำหรับจัดการ autoload และ dependencies)
 
-### 2. Setup Configuration
-Run the automated database installation script:
+### 2. ตั้งค่าและเตรียมฐานข้อมูล
+เรียกใช้งานสคริปต์สำหรับการติดตั้งระบบฐานข้อมูลและนำเข้าข้อมูลจำลองเริ่มต้น:
 ```bash
 php database/setup.php
 ```
 
-### 3. Start Development Server
-Run PHP's built-in web server pointing to the `public/` directory:
+### 3. เริ่มต้นรันเซิร์ฟเวอร์จำลอง (Development Server)
+ใช้งานเซิร์ฟเวอร์ในตัวของ PHP (PHP's built-in web server) โดยกำหนดจุดเริ่มต้นการรันไปที่โฟลเดอร์ `public/`:
 ```bash
 php -S localhost:8000 -t public
 ```
 
-Open `http://localhost:8000` in your web browser.
+เมื่อระบบเริ่มรันเรียบร้อยแล้ว ให้เปิดบราวเซอร์และเข้าใช้งานระบบที่ URL: `http://localhost:8000`
 
 ---
 
-## 📂 Project Structure
+## 📂 โครงสร้างโฟลเดอร์ของโครงการ (Project Structure)
 
 ```text
 computer-booking/
 ├── app/
-│   ├── Config/          # Database configuration, app settings
-│   ├── Core/            # Framework core: Router, Request, Response, Controller, Database
-│   ├── Controllers/     # MVC Controllers
-│   ├── Repositories/    # Data Access Layer (PDO SQL queries)
-│   ├── Services/        # Business Logic Layer (business rules, validation)
-│   ├── Middleware/      # Auth, Role, CSRF protection
-│   └── Helpers/         # Utility functions
+│   ├── Config/          # ไฟล์ตั้งค่าการเชื่อมต่อฐานข้อมูลและการตั้งค่าระบบ
+│   ├── Core/            # ส่วนหลักของเฟรมเวิร์ก: Router, Request, Response, Controller, Database
+│   ├── Controllers/     # ตัวควบคุมการรับส่งข้อมูล (MVC Controllers)
+│   ├── Repositories/    # ส่วนจัดการคิวรีฐานข้อมูล SQL (Data Access Layer - PDO)
+│   ├── Services/        # ส่วนประมวลผลตรรกะทางธุรกิจ การตรวจสอบความถูกต้องข้อมูล (Business Logic)
+│   ├── Middleware/      # สคริปต์ตัวกรองสิทธิ์ใช้งาน, ป้องกันความปลอดภัย CSRF
+│   └── Helpers/         # ฟังก์ชันอำนวยความสะดวกทั่วไปและตัวแปลภาษา (Translator Helper)
 ├── views/
-│   ├── layouts/         # Layout templates (Main, Auth, Print)
-│   ├── auth/            # Authentication forms
-│   ├── dashboard/       # Main admin analytics board
-│   ├── reservations/    # Booking forms & check-in triggers
-│   ├── computers/       # Workstation asset CRUD
-│   ├── laboratories/    # Lab room configurations
-│   ├── reports/         # Export views & charts
-│   ├── settings/        # System configs panel
-│   └── errors/          # 404 / 500 error templates
+│   ├── layouts/         # แม่แบบการแสดงผลหลัก (Main, Auth, Print Layouts)
+│   ├── auth/            # หน้าจอล็อกอินและจัดการสิทธิ์
+│   ├── dashboard/       # หน้าจอสรุปสถิติแดชบอร์ด
+│   ├── reservations/    # แบบฟอร์มการจองเครื่อง และบันทึกประวัติ
+│   ├── computers/       # หน้าจอจัดการข้อมูลครุภัณฑ์เครื่องคอมพิวเตอร์ (Computers CRUD)
+│   ├── laboratories/    # หน้าจอจัดการข้อมูลห้องปฏิบัติการคอมพิวเตอร์ (Labs CRUD)
+│   ├── reports/         # หน้าจอส่งออกข้อมูลรายงานและกราฟสรุป
+│   ├── settings/        # หน้าจอตั้งค่าระบบและกู้คืนฐานข้อมูล / หน้าเปลี่ยนรหัสผ่านส่วนตัว
+│   └── errors/          # แม่แบบหน้าจอข้อผิดพลาด 404 และ 500
 ├── public/
-│   ├── assets/          # Static CSS & JS resources
-│   ├── uploads/         # Uploaded workstation images
-│   └── index.php        # Front Controller
+│   ├── assets/          # ไฟล์ทรัพยากรคงที่ ได้แก่ CSS, JS และไอคอน
+│   ├── uploads/         # โฟลเดอร์เก็บภาพเครื่องคอมพิวเตอร์ที่อัปโหลด
+│   └── index.php        # จุดเริ่มต้นเข้าใช้งานระบบหลัก (Front Controller)
 ├── database/
-│   ├── schema.sql       # Database table setup
-│   ├── seed.sql         # Seed data
-│   └── setup.php        # Installation script
+│   ├── schema.sql       # โครงสร้างตารางฐานข้อมูลทั้งหมด
+│   ├── seed.sql         # ข้อมูลตัวอย่างสำหรับทดสอบระบบ
+│   └── setup.php        # สคริปต์ช่วยติดตั้งระบบอัตโนมัติ
 ├── storage/
-│   └── logs/            # Activity & Simulated mail logs
-├── .env                 # Environment variables
-└── composer.json        # Project packages configuration
+│   └── logs/            # ไฟล์เก็บประวัติและจำลองการส่งอีเมลระบบ
+├── .env                 # ไฟล์กำหนดค่าสภาพแวดล้อมระบบ (Environment Variables)
+└── composer.json        # ไฟล์ตั้งค่าแพ็กเกจของโครงการและ Autoload
 ```
 
 ---
 
-## 🛡️ Security Details
-* **SQL Injection Protection**: Uses PDO prepared statements with disabled emulated parameters.
-* **XSS Mitigation**: Strict HTML output escaping using custom global helper `esc()`.
-* **CSRF Mitigation**: Uses session CSRF tokens validated on all state-changing POST endpoints.
-* **Secure Sessions**: Uses HTTP-Only and SameSite cookie policies to prevent session hijacking.
+## 🛡️ มาตรการและการรักษาความปลอดภัยของระบบ (Security Details)
+
+* **ป้องกัน SQL Injection**: ใช้การคิวรีผ่านคำสั่งเตรียมพร้อม (PDO Prepared Statements) ร่วมกับการปิด Emulated Parameters เพื่อความปลอดภัยสูงสุดในการกรองชุดข้อมูลนำเข้า
+* **ป้องกัน Cross-Site Scripting (XSS)**: ดำเนินการ Escaping ชุดข้อมูลที่นำไปแสดงผลบน HTML ทั้งหมดอย่างเข้มงวดด้วยฟังก์ชันตัวช่วย `esc()` ทั่วทั้งระบบ
+* **ป้องกัน Cross-Site Request Forgery (CSRF)**: สร้างและตรวจสอบ CSRF Token ทุกครั้งที่มีการส่งข้อมูลแก้ไขหรือทำลายสถานะผ่านคำขอแบบ POST
+* **ระบบความปลอดภัยของ Session**: ตั้งค่า Session Cookie ด้วยคุณสมบัติ HTTP-Only และ SameSite นโยบายความปลอดภัยเพื่อป้องกันการขโมยข้อมูล Session (Session Hijacking)
