@@ -149,6 +149,22 @@ class Translator {
             'Internal Server Error' => 'ข้อผิดพลาดภายในระบบ',
             'Page Not Found' => 'ไม่พบหน้าที่คุณต้องการ',
 
+            // --- Date and Time Translation ---
+            'Jan' => 'ม.ค.',
+            'Feb' => 'ก.พ.',
+            'Mar' => 'มี.ค.',
+            'Apr' => 'เม.ย.',
+            'May' => 'พ.ค.',
+            'Jun' => 'มิ.ย.',
+            'Jul' => 'ก.ค.',
+            'Aug' => 'ส.ค.',
+            'Sep' => 'ก.ย.',
+            'Oct' => 'ต.ค.',
+            'Nov' => 'พ.ย.',
+            'Dec' => 'ธ.ค.',
+            ' AM' => ' น.',
+            ' PM' => ' น.',
+
             // --- SweetAlert Popups Translation ---
             'Cancel Booking?' => 'ต้องการยกเลิกการจองเครื่อง?',
             'Are you sure you want to cancel this reservation? This cannot be undone.' => 'คุณแน่ใจหรือไม่ว่าต้องการยกเลิกการจองเครื่องคอมพิวเตอร์นี้? การดำเนินการนี้ไม่สามารถย้อนกลับได้',

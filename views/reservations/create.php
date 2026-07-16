@@ -1,73 +1,164 @@
+<style>
+    .form-card {
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(99, 102, 241, 0.05);
+        border: 1px solid rgba(99, 102, 241, 0.08);
+        background-color: #ffffff;
+        overflow: hidden;
+    }
+    .form-card-header {
+        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        padding: 24px;
+        border-bottom: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .form-card-header h5 {
+        color: #ffffff;
+        font-weight: 700;
+    }
+    .form-card-header .btn-outline-light {
+        border: 1px solid rgba(255, 255, 255, 0.4) !important;
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: #ffffff !important;
+        font-weight: 500;
+        border-radius: 10px;
+        padding: 6px 14px;
+        transition: all 0.2s ease;
+    }
+    .form-card-header .btn-outline-light:hover {
+        background-color: #ffffff !important;
+        color: #4f46e5 !important;
+        transform: translateY(-1px);
+    }
+    .form-label {
+        font-weight: 600;
+        color: #475569;
+        font-size: 0.85rem;
+        margin-bottom: 6px;
+    }
+    .form-control, .form-select {
+        border: 1px solid #d1d5db;
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 0.92rem;
+        background-color: #f9fafb;
+        transition: all 0.2s ease;
+    }
+    .form-control:focus, .form-select:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        background-color: #ffffff;
+    }
+    
+    /* PC Card Design Customization */
+    .pc-card {
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        background-color: #ffffff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        transition: all 0.25s ease;
+        overflow: hidden;
+    }
+    .pc-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(99, 102, 241, 0.08);
+        border-color: rgba(99, 102, 241, 0.2);
+    }
+    .section-title {
+        position: relative;
+        padding-left: 12px;
+        color: #4f46e5;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+    .section-title::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        bottom: 2px;
+        width: 4px;
+        background-color: #6366f1;
+        border-radius: 4px;
+    }
+</style>
+
 <div class="row justify-content-center">
     <div class="col-lg-10">
-        <div class="card mb-4">
-            <div class="card-header border-0 pb-0">
-                <h5 class="fw-bold m-0"><i class="fa-solid fa-square-plus text-primary me-2"></i>New Computer Reservation</h5>
-                <a href="/reservations" class="btn btn-outline-secondary btn-sm"><i class="fa-solid fa-arrow-left me-1"></i> Back to List</a>
+        <div class="card form-card mb-4">
+            <div class="form-card-header">
+                <h5 class="m-0"><i class="fa-solid fa-square-plus me-2"></i>ส่งคำขอจองเครื่องคอมพิวเตอร์ใหม่</h5>
+                <a href="/reservations" class="btn btn-outline-light btn-sm"><i class="fa-solid fa-arrow-left me-1"></i> กลับไปยังหน้ารายการ</a>
             </div>
-            <div class="card-body">
+            <div class="card-body p-4">
                 
                 <form id="booking-form">
                     <?= csrf_field() ?>
 
-                    <div class="row g-3 mb-4">
+                    <div class="row g-3 mb-5">
                         <!-- Step 1: Lab Selection -->
                         <div class="col-md-4">
-                            <label for="laboratory_id" class="form-label text-secondary small">1. Select Laboratory Room</label>
+                            <label for="laboratory_id" class="form-label">1. เลือกห้องปฏิบัติการ <span class="text-danger">*</span></label>
                             <select id="laboratory_id" name="laboratory_id" class="form-select" required>
-                                <option value="">-- Select Lab Room --</option>
+                                <option value="">-- เลือกห้องแล็บ --</option>
                                 <?php foreach ($labs as $l): ?>
-                                    <option value="<?= $l['id'] ?>"><?= esc($l['code']) ?> - <?= esc($l['name']) ?> (Cap: <?= $l['capacity'] ?>)</option>
+                                    <option value="<?= $l['id'] ?>"><?= esc($l['code']) ?> - <?= esc($l['name']) ?> (จำนวนที่นั่ง: <?= $l['capacity'] ?> เครื่อง)</option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
 
                         <!-- Step 2: Date Selection -->
                         <div class="col-md-3">
-                            <label for="date" class="form-label text-secondary small">2. Reservation Date</label>
+                            <label for="date" class="form-label">2. เลือกวันที่ต้องการจอง <span class="text-danger">*</span></label>
                             <input type="date" id="date" name="date" class="form-control" min="<?= date('Y-m-d') ?>" required>
                         </div>
 
                         <!-- Step 3: Time Selection -->
                         <div class="col-md-2">
-                            <label for="start_time" class="form-label text-secondary small">Start Time</label>
+                            <label for="start_time" class="form-label">เวลาเริ่มต้น <span class="text-danger">*</span></label>
                             <input type="time" id="start_time" name="start_time" class="form-control" required>
                         </div>
 
                         <div class="col-md-2">
-                            <label for="end_time" class="form-label text-secondary small">End Time</label>
+                            <label for="end_time" class="form-label">เวลาสิ้นสุด <span class="text-danger">*</span></label>
                             <input type="time" id="end_time" name="end_time" class="form-control" required>
                         </div>
 
                         <!-- Search Button -->
                         <div class="col-md-1 d-grid">
-                            <label class="form-label text-transparent small">Find</label>
-                            <button type="button" id="btn-search-pcs" class="btn btn-indigo"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <label class="form-label text-transparent small">ค้นหา</label>
+                            <button type="button" id="btn-search-pcs" class="btn btn-indigo" title="ค้นหาเครื่องที่ว่าง"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </div>
 
                     <!-- Step 4: Available Computers Grid -->
-                    <div id="pc-selection-area" class="mb-4" style="display: none;">
-                        <h6 class="text-secondary small mb-3 text-uppercase fw-semibold tracking-wider">3. Choose Available Workstation(s)</h6>
+                    <div id="pc-selection-area" class="mb-5" style="display: none;">
+                        <h6 class="section-title">3. เลือกเครื่องคอมพิวเตอร์ที่ว่าง</h6>
                         
                         <!-- PCs Grid -->
                         <div class="row g-3 row-cols-1 row-cols-md-3 row-cols-lg-4" id="pcs-grid"></div>
                         
                         <div id="no-pcs-message" class="text-center text-muted py-5" style="display: none;">
                             <i class="fa-solid fa-triangle-exclamation fa-2x mb-3 text-warning"></i>
-                            <p class="m-0">No available workstations found for the selected room and timing parameters.</p>
+                            <p class="m-0 fw-semibold">ไม่พบเครื่องคอมพิวเตอร์ที่ว่างในเงื่อนไขและห้องแล็บที่ท่านเลือก</p>
+                            <span class="small text-secondary">กรุณาลองเปลี่ยนวันที่หรือช่วงเวลาเข้าใช้งานใหม่อีกครั้ง</span>
                         </div>
                     </div>
 
                     <!-- Step 5: Purpose and Submit -->
                     <div id="submission-area" style="display: none;">
                         <div class="mb-4">
-                            <label for="purpose" class="form-label text-secondary small">4. Purpose of Reservation</label>
-                            <textarea id="purpose" name="purpose" rows="3" class="form-control" placeholder="e.g. Programming assignment, Database laboratory class project, network configuration exercise..." required></textarea>
+                            <label for="purpose" class="form-label">4. วัตถุประสงค์ในการขอเข้าใช้งานเครื่อง <span class="text-danger">*</span></label>
+                            <textarea id="purpose" name="purpose" rows="3" class="form-control" placeholder="เช่น ทำงานการบ้านเขียนโปรแกรมวิชาคอมพิวเตอร์, ฝึกหัดการตั้งค่าระบบเน็ตเวิร์ก, ศึกษาค้นคว้าด้วยตนเอง..." required></textarea>
                         </div>
 
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary px-5 py-2 fw-semibold" style="border-radius: 10px;"><i class="fa-solid fa-circle-check me-2"></i> Submit Reservation</button>
+                        <div class="d-flex justify-content-end border-top border-secondary border-opacity-10 pt-4 mt-5">
+                            <button type="submit" class="btn btn-indigo px-5 py-2 fw-semibold" style="border-radius: 10px;"><i class="fa-solid fa-circle-check me-2"></i> ส่งคำขอจองเครื่องคอมพิวเตอร์</button>
                         </div>
                     </div>
 
@@ -91,18 +182,18 @@
             if (!labId || !date || !startTime || !endTime) {
                 Swal.fire({
                     icon: 'warning',
-                    title: 'Missing Fields',
-                    text: 'Please select a laboratory room, date, start time, and end time first.',
+                    title: 'กรอกข้อมูลไม่ครบถ้วน',
+                    text: 'กรุณาเลือกห้องปฏิบัติการ, วันที่, เวลาเริ่มต้น และเวลาสิ้นสุดก่อนค้นหาเครื่องคอมฯ ว่าง',
                     confirmButtonColor: '#6366f1',
-                    background: '#111827',
-                    color: '#fff'
+                    background: '#ffffff',
+                    color: '#1e293b'
                 });
                 return;
             }
 
             // Show loading animation inside grid
             $('#pc-selection-area').show();
-            $('#pcs-grid').html('<div class="col-12 text-center text-muted py-5"><div class="spinner-border text-primary" role="status"></div><p class="mt-2 small">Searching workstations...</p></div>');
+            $('#pcs-grid').html('<div class="col-12 text-center text-muted py-5"><div class="spinner-border text-primary" role="status"></div><p class="mt-2 small">กำลังค้นหาเครื่องคอมพิวเตอร์ที่ว่างในระบบ...</p></div>');
             $('#no-pcs-message').hide();
             $('#submission-area').hide();
 
@@ -130,18 +221,18 @@
                         
                         var cardHtml = `
                             <div class="col">
-                                <div class="card h-100 pc-card" style="cursor: pointer; border-color: rgba(255,255,255,0.06); background: rgba(15, 23, 42, 0.4);">
-                                    <img src="${imgUrl}" class="card-img-top" alt="Workstation Image" style="height: 120px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px; opacity: 0.85;">
+                                <div class="card h-100 pc-card" style="cursor: pointer;" id="card-pc-${pc.id}">
+                                    <img src="${imgUrl}" class="card-img-top" alt="Workstation Image" style="height: 120px; object-fit: cover; opacity: 0.85;">
                                     <div class="card-body p-3">
                                         <div class="form-check m-0">
                                             <input class="form-check-input pc-checkbox" type="checkbox" name="computers[]" value="${pc.id}" id="pc-${pc.id}" style="float: right;">
-                                            <label class="form-check-label d-block text-white fw-bold" for="pc-${pc.id}" style="cursor: pointer;">
+                                            <label class="form-check-label d-block text-dark fw-bold" for="pc-${pc.id}" style="cursor: pointer;">
                                                 ${pc.code}
                                             </label>
                                         </div>
                                         <div class="text-secondary small mt-1">${pc.brand} ${pc.model}</div>
-                                        <hr class="my-2 border-secondary opacity-25">
-                                        <div style="font-size: 0.75rem; color: #94a3b8;">
+                                        <hr class="my-2 border-secondary opacity-10">
+                                        <div style="font-size: 0.75rem; color: #475569;">
                                             <div><strong>CPU:</strong> ${pc.cpu}</div>
                                             <div><strong>RAM:</strong> ${pc.ram}</div>
                                             <div><strong>OS:</strong> ${pc.operating_system}</div>
@@ -165,10 +256,12 @@
                         var card = $(this).closest('.pc-card');
                         if (this.checked) {
                             card.css('border-color', '#6366f1');
-                            card.css('background', 'rgba(99, 102, 241, 0.08)');
+                            card.css('background-color', 'rgba(99, 102, 241, 0.06)');
+                            card.css('box-shadow', '0 8px 24px rgba(99, 102, 241, 0.12)');
                         } else {
-                            card.css('border-color', 'rgba(255,255,255,0.06)');
-                            card.css('background', 'rgba(15, 23, 42, 0.4)');
+                            card.css('border-color', '#e2e8f0');
+                            card.css('background-color', '#ffffff');
+                            card.css('box-shadow', 'none');
                         }
                     });
 
@@ -178,11 +271,11 @@
                     $('#pcs-grid').empty();
                     Swal.fire({
                         icon: 'error',
-                        title: 'Search Failed',
-                        text: xhr.responseJSON?.error || 'Could not fetch computers.',
+                        title: 'การค้นหาล้มเหลว',
+                        text: xhr.responseJSON?.error || 'ไม่สามารถเรียกข้อมูลเครื่องคอมพิวเตอร์ได้',
                         confirmButtonColor: '#6366f1',
-                        background: '#111827',
-                        color: '#fff'
+                        background: '#ffffff',
+                        color: '#1e293b'
                     });
                 }
             });
@@ -196,11 +289,11 @@
             if (selectedCompCount === 0) {
                 Swal.fire({
                     icon: 'warning',
-                    title: 'Workstation Required',
-                    text: 'Please select at least one computer workstation card from the list.',
+                    title: 'กรุณาเลือกเครื่องคอมฯ',
+                    text: 'กรุณาเลือกเครื่องคอมพิวเตอร์ที่คุณต้องการจองอย่างน้อยหนึ่งเครื่องจากในรายการด้านบน',
                     confirmButtonColor: '#6366f1',
-                    background: '#111827',
-                    color: '#fff'
+                    background: '#ffffff',
+                    color: '#1e293b'
                 });
                 return;
             }
@@ -226,11 +319,11 @@
                 success: function(response) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Booking Submitted!',
-                        text: response.message,
+                        title: 'ส่งคำขอจองสำเร็จ!',
+                        text: response.message || 'ส่งข้อมูลรายละเอียดการจองเข้าระบบเรียบร้อยแล้ว',
                         confirmButtonColor: '#6366f1',
-                        background: '#111827',
-                        color: '#fff'
+                        background: '#ffffff',
+                        color: '#1e293b'
                     }).then(() => {
                         window.location.href = '/reservations/view/' + response.reservation_id;
                     });
@@ -244,20 +337,20 @@
                         }
                         Swal.fire({
                             icon: 'error',
-                            title: 'Validation Error',
+                            title: 'ข้อมูลไม่ถูกต้อง',
                             html: errMsgs,
                             confirmButtonColor: '#6366f1',
-                            background: '#111827',
-                            color: '#fff'
+                            background: '#ffffff',
+                            color: '#1e293b'
                         });
                     } else {
                         Swal.fire({
                             icon: 'error',
-                            title: 'Submission Failed',
-                            text: xhr.responseJSON?.error || 'A double-booking conflict occurred. Please refresh availability.',
+                            title: 'ส่งคำขอจองล้มเหลว',
+                            text: xhr.responseJSON?.error || 'เกิดปัญหาจองชนกันซ้ำซ้อน กรุณารีเฟรชตรวจสอบสถานะว่างใหม่อีกครั้ง',
                             confirmButtonColor: '#6366f1',
-                            background: '#111827',
-                            color: '#fff'
+                            background: '#ffffff',
+                            color: '#1e293b'
                         });
                     }
                 }

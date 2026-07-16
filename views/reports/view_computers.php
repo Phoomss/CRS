@@ -1,42 +1,133 @@
-<div class="card mb-4">
-    <div class="card-header border-0 pb-0">
-        <h5 class="fw-bold m-0"><i class="fa-solid fa-display text-indigo me-2"></i>Computer Workstation Usage Analytics</h5>
+<style>
+    .report-table-card {
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(99, 102, 241, 0.05);
+        border: 1px solid rgba(99, 102, 241, 0.08);
+        background-color: #ffffff;
+        overflow: hidden;
+    }
+    .report-table-header {
+        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        padding: 24px;
+        border-bottom: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .report-table-header h5 {
+        color: #ffffff;
+        font-weight: 700;
+    }
+    .report-table-header .btn-outline-light {
+        border: 1px solid rgba(255, 255, 255, 0.4) !important;
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: #ffffff !important;
+        font-weight: 500;
+        border-radius: 10px;
+        padding: 8px 16px;
+        transition: all 0.2s ease;
+    }
+    .report-table-header .btn-outline-light:hover {
+        background-color: #ffffff !important;
+        color: #4f46e5 !important;
+        transform: translateY(-1px);
+    }
+    .report-table-header .btn-success {
+        background-color: #10b981 !important;
+        border: none !important;
+        color: #ffffff !important;
+        font-weight: 500;
+        border-radius: 10px;
+        padding: 8px 16px;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+        transition: all 0.2s ease;
+    }
+    .report-table-header .btn-success:hover {
+        background-color: #059669 !important;
+        transform: translateY(-1px);
+    }
+    .table-container {
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #f1f5f9;
+    }
+    .report-data-table th {
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.8px;
+        background-color: #f8fafc !important;
+        color: #64748b;
+        padding: 16px 20px;
+        border-bottom: 2px solid #e2e8f0;
+    }
+    .report-data-table td {
+        padding: 16px 20px;
+        border-bottom: 1px solid #f1f5f9;
+        font-size: 0.9rem;
+        color: #334155;
+    }
+    .report-data-table tbody tr {
+        transition: all 0.2s ease;
+    }
+    .report-data-table tbody tr:hover {
+        background-color: rgba(99, 102, 241, 0.015) !important;
+    }
+    
+    /* DataTable customization */
+    .dataTables_wrapper .dataTables_filter input {
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 6px 12px;
+        background-color: #f8fafc;
+    }
+    .dataTables_wrapper .dataTables_length select {
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 4px 8px;
+        background-color: #f8fafc;
+    }
+</style>
+
+<div class="card report-table-card mb-4">
+    <div class="report-table-header">
+        <h5 class="m-0"><i class="fa-solid fa-display me-2"></i>วิเคราะห์การใช้งานเครื่องคอมพิวเตอร์รายเครื่อง</h5>
         <div class="d-flex gap-2">
-            <button onclick="window.print();" class="btn btn-outline-light btn-sm"><i class="fa-solid fa-print me-1"></i> Print Report</button>
-            <a href="/reports/export/computers" class="btn btn-success btn-sm"><i class="fa-solid fa-file-csv me-1"></i> Export to Excel</a>
-            <a href="/reports" class="btn btn-outline-secondary btn-sm"><i class="fa-solid fa-arrow-left"></i></a>
+            <button onclick="window.print();" class="btn btn-outline-light btn-sm"><i class="fa-solid fa-print me-1"></i> พิมพ์รายงาน</button>
+            <a href="/reports/export/computers" class="btn btn-success btn-sm"><i class="fa-solid fa-file-csv me-1"></i> ส่งออกไฟล์ Excel</a>
+            <a href="/reports" class="btn btn-outline-light btn-sm" title="กลับหน้าหลักรายงาน"><i class="fa-solid fa-arrow-left"></i></a>
         </div>
     </div>
-    <div class="card-body">
+    <div class="card-body p-4">
         
-        <div class="table-responsive">
-            <table class="table table-dark table-hover align-middle m-0" id="report-table">
+        <div class="table-responsive table-container">
+            <table class="table report-data-table align-middle m-0" id="report-table">
                 <thead>
                     <tr>
-                        <th>Workstation Code</th>
-                        <th>Device Info</th>
-                        <th>Laboratory Assignment</th>
-                        <th class="text-center">Total Bookings</th>
-                        <th class="text-center">Completed Sessions</th>
-                        <th class="text-center">Expired Releases</th>
-                        <th class="text-end">Total Duration (Hrs)</th>
+                        <th>รหัสเครื่องคอมฯ</th>
+                        <th>ข้อมูลสเปคเครื่อง</th>
+                        <th>ห้องปฏิบัติการที่สังกัด</th>
+                        <th class="text-center">ยอดจองสะสม (ครั้ง)</th>
+                        <th class="text-center">เข้าใช้งานสำเร็จ (ครั้ง)</th>
+                        <th class="text-center">ปล่อยหมดเวลา (ครั้ง)</th>
+                        <th class="text-end">เวลารวมเปิดใช้งาน (ชม.)</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if (empty($data)): ?>
                         <tr>
-                            <td colspan="7" class="text-center text-muted py-4">No workstation booking sessions logged yet.</td>
+                            <td colspan="7" class="text-center text-muted py-4">ยังไม่มีการบันทึกประวัติการใช้งานเครื่องคอมพิวเตอร์ในระบบ</td>
                         </tr>
                     <?php else: ?>
                         <?php foreach ($data as $row): ?>
                             <tr>
-                                <td><span class="fw-bold text-white"><?= esc($row['code']) ?></span></td>
+                                <td><span class="fw-bold text-dark"><?= esc($row['code']) ?></span></td>
                                 <td><span class="small text-secondary"><?= esc($row['name']) ?></span></td>
-                                <td><span class="fw-semibold text-white"><?= esc($row['laboratory_name']) ?></span></td>
-                                <td class="text-center"><span class="badge bg-indigo"><?= $row['total_bookings'] ?></span></td>
-                                <td class="text-center text-success"><span class="badge bg-success-subtle text-success"><?= $row['completed_bookings'] ?></span></td>
-                                <td class="text-center text-danger"><span class="badge bg-danger-subtle text-danger"><?= $row['expired_bookings'] ?></span></td>
-                                <td class="text-end fw-semibold text-white"><?= round(($row['total_minutes'] ?? 0) / 60, 1) ?> hrs</td>
+                                <td><span class="fw-semibold text-dark"><?= esc($row['laboratory_name']) ?></span></td>
+                                <td class="text-center"><span class="badge bg-indigo-subtle text-indigo" style="font-size: 0.85rem; font-weight: 600;"><?= $row['total_bookings'] ?></span></td>
+                                <td class="text-center"><span class="badge bg-success-subtle text-success" style="font-size: 0.85rem; font-weight: 600;"><?= $row['completed_bookings'] ?></span></td>
+                                <td class="text-center"><span class="badge bg-danger-subtle text-danger" style="font-size: 0.85rem; font-weight: 600;"><?= $row['expired_bookings'] ?></span></td>
+                                <td class="text-end fw-semibold text-dark"><?= round(($row['total_minutes'] ?? 0) / 60, 1) ?> ชม.</td>
                             </tr>
                         <?php endforeach; ?>
                     <?php endif; ?>
@@ -57,7 +148,12 @@
             lengthMenu: [10, 25, 50],
             pageLength: 25,
             language: {
-                search: "Search logs:",
+                search: "ค้นหาข้อมูล:",
+                lengthMenu: "แสดง _MENU_ รายการต่อหน้า",
+                zeroRecords: "ไม่พบข้อมูลที่ต้องการค้นหา",
+                info: "แสดงรายการที่ _START_ ถึง _END_ จากทั้งหมด _TOTAL_ รายการ",
+                infoEmpty: "ไม่มีข้อมูลแสดง",
+                infoFiltered: "(กรองจากทั้งหมด _MAX_ รายการ)",
                 paginate: {
                     previous: "<i class='fa-solid fa-chevron-left'></i>",
                     next: "<i class='fa-solid fa-chevron-right'></i>"
