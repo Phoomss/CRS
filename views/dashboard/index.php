@@ -8,6 +8,10 @@
         transform: translateY(-3px);
         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
     }
+    .stat-card .rounded-circle {
+        flex-shrink: 0;
+        margin-left: 12px;
+    }
     .dashboard-card {
         border-radius: 16px;
         box-shadow: 0 10px 30px rgba(99, 102, 241, 0.04);
@@ -74,11 +78,31 @@
         background-color: #6366f1;
         border: 2px solid #ffffff;
     }
+
+    /* Responsive overrides for mobile */
+    @media (max-width: 575.98px) {
+        .dashboard-card-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+        }
+        .dashboard-card-header a {
+            width: 100%;
+            text-align: center;
+        }
+        .dashboard-card-body {
+            padding: 16px;
+        }
+        .stat-card {
+            padding: 16px !important;
+        }
+    }
 </style>
 
-<div class="row g-4 mb-4">
+<div class="row g-3 g-md-4 mb-4">
     <!-- Stat 1: Available computers -->
-    <div class="col-md-3">
+    <div class="col-12 col-sm-6 col-lg-3">
         <div class="card stat-card p-3 border-0 h-100" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1px solid rgba(34, 197, 94, 0.2) !important;">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
@@ -94,7 +118,7 @@
     </div>
 
     <!-- Stat 2: Active / Approved Bookings -->
-    <div class="col-md-3">
+    <div class="col-12 col-sm-6 col-lg-3">
         <div class="card stat-card p-3 border-0 h-100" style="background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%); border: 1px solid rgba(99, 102, 241, 0.2) !important;">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
@@ -110,7 +134,7 @@
     </div>
 
     <!-- Stat 3: Pending Approvals -->
-    <div class="col-md-3">
+    <div class="col-12 col-sm-6 col-lg-3">
         <div class="card stat-card p-3 border-0 h-100" style="background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 1px solid rgba(245, 158, 11, 0.2) !important;">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
@@ -126,7 +150,7 @@
     </div>
 
     <!-- Stat 4: Workstations under maintenance -->
-    <div class="col-md-3">
+    <div class="col-12 col-sm-6 col-lg-3">
         <div class="card stat-card p-3 border-0 h-100" style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border: 1px solid rgba(239, 68, 68, 0.2) !important;">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
@@ -142,9 +166,9 @@
     </div>
 </div>
 
-<div class="row g-4 mb-4">
+<div class="row g-3 g-md-4 mb-4">
     <!-- Full Calendar Schedule Widget -->
-    <div class="col-lg-8">
+    <div class="col-12 col-lg-8">
         <div class="card dashboard-card h-100">
             <div class="dashboard-card-header">
                 <h5><i class="fa-regular fa-calendar me-2 text-primary"></i>ตารางเวลาการจองเครื่องคอมพิวเตอร์</h5>
@@ -159,55 +183,63 @@
     </div>
 
     <!-- Right Column: Charts & Statistics -->
-    <div class="col-lg-4 d-flex flex-column gap-4">
-        <?php if (!empty($monthlyTrends)): ?>
-            <!-- Chart 1: Monthly Trends -->
-            <div class="card dashboard-card flex-grow-1">
-                <div class="dashboard-card-header">
-                    <h6><i class="fa-solid fa-chart-line me-2 text-indigo"></i>แนวโน้มยอดการจองเครื่องสะสม</h6>
+    <div class="col-12 col-lg-4">
+        <div class="row g-3 g-md-4 h-100">
+            <?php if (!empty($monthlyTrends)): ?>
+                <!-- Chart 1: Monthly Trends -->
+                <div class="col-12 col-md-6 col-lg-12">
+                    <div class="card dashboard-card h-100">
+                        <div class="dashboard-card-header">
+                            <h6><i class="fa-solid fa-chart-line me-2 text-indigo"></i>แนวโน้มยอดการจองเครื่องสะสม</h6>
+                        </div>
+                        <div class="dashboard-card-body py-2">
+                            <canvas id="monthlyTrendChart" style="max-height: 180px;"></canvas>
+                        </div>
+                    </div>
                 </div>
-                <div class="dashboard-card-body py-2">
-                    <canvas id="monthlyTrendChart" style="max-height: 180px;"></canvas>
-                </div>
-            </div>
-        <?php endif; ?>
+            <?php endif; ?>
 
-        <?php if (!empty($statusStats)): ?>
-            <!-- Chart 2: Status breakdown -->
-            <div class="card dashboard-card flex-grow-1">
-                <div class="dashboard-card-header">
-                    <h6><i class="fa-solid fa-chart-pie me-2 text-indigo"></i>สัดส่วนตามสถานะการจอง</h6>
+            <?php if (!empty($statusStats)): ?>
+                <!-- Chart 2: Status breakdown -->
+                <div class="col-12 col-md-6 col-lg-12">
+                    <div class="card dashboard-card h-100">
+                        <div class="dashboard-card-header">
+                            <h6><i class="fa-solid fa-chart-pie me-2 text-indigo"></i>สัดส่วนตามสถานะการจอง</h6>
+                        </div>
+                        <div class="dashboard-card-body py-2">
+                            <canvas id="statusBreakdownChart" style="max-height: 180px;"></canvas>
+                        </div>
+                    </div>
                 </div>
-                <div class="dashboard-card-body py-2">
-                    <canvas id="statusBreakdownChart" style="max-height: 180px;"></canvas>
-                </div>
-            </div>
-        <?php endif; ?>
+            <?php endif; ?>
 
-        <?php if (empty($monthlyTrends) && empty($statusStats)): ?>
-            <!-- Student Helpful Links Widget -->
-            <div class="card dashboard-card flex-grow-1">
-                <div class="dashboard-card-header">
-                    <h6><i class="fa-solid fa-circle-info me-2 text-primary"></i>คำแนะนำและขั้นตอนการใช้งาน</h6>
+            <?php if (empty($monthlyTrends) && empty($statusStats)): ?>
+                <!-- Student Helpful Links Widget -->
+                <div class="col-12">
+                    <div class="card dashboard-card h-100">
+                        <div class="dashboard-card-header">
+                            <h6><i class="fa-solid fa-circle-info me-2 text-primary"></i>คำแนะนำและขั้นตอนการใช้งาน</h6>
+                        </div>
+                        <div class="dashboard-card-body text-secondary small">
+                            <p class="mb-2 fw-medium text-dark">ยินดีต้อนรับสู่ระบบจองเครื่องคอมพิวเตอร์ห้องปฏิบัติการภาควิชา</p>
+                            <ul class="ps-3 mb-3 text-secondary" style="line-height: 1.5;">
+                                <li class="mb-1">สามารถส่งคำขอจองเครื่องคอมพิวเตอร์ล่วงหน้าได้สูงสุด 1 สัปดาห์</li>
+                                <li class="mb-1">การจองที่ได้รับอนุมัติแล้ว จะต้องเช็คอินเข้าใช้งานเครื่องภายใน 15 นาทีของช่วงเริ่มต้นเวลาจอง</li>
+                                <li class="mb-1">โปรดเช็คเอาท์ออกทุกครั้งหลังใช้งานเสร็จสิ้น เพื่อปล่อยสิทธิ์เครื่องว่างให้เพื่อน ๆ คนอื่นใช้งาน</li>
+                            </ul>
+                            <a href="/reservations/create" class="btn btn-sm btn-outline-indigo w-100 py-2 fw-semibold" style="border-radius: 8px;">ทำการจองเครื่องทันที</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="dashboard-card-body text-secondary small">
-                    <p class="mb-2 fw-medium text-dark">ยินดีต้อนรับสู่ระบบจองเครื่องคอมพิวเตอร์ห้องปฏิบัติการภาควิชา</p>
-                    <ul class="ps-3 mb-3 text-secondary" style="line-height: 1.5;">
-                        <li class="mb-1">สามารถส่งคำขอจองเครื่องคอมพิวเตอร์ล่วงหน้าได้สูงสุด 1 สัปดาห์</li>
-                        <li class="mb-1">การจองที่ได้รับอนุมัติแล้ว จะต้องเช็คอินเข้าใช้งานเครื่องภายใน 15 นาทีของช่วงเริ่มต้นเวลาจอง</li>
-                        <li class="mb-1">โปรดเช็คเอาท์ออกทุกครั้งหลังใช้งานเสร็จสิ้น เพื่อปล่อยสิทธิ์เครื่องว่างให้เพื่อน ๆ คนอื่นใช้งาน</li>
-                    </ul>
-                    <a href="/reservations/create" class="btn btn-sm btn-outline-indigo w-100 py-2 fw-semibold" style="border-radius: 8px;">ทำการจองเครื่องทันที</a>
-                </div>
-            </div>
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
     </div>
 </div>
 
 <?php if (has_role(['Super Administrator', 'Department Administrator', 'Staff'])): ?>
-<div class="row g-4">
+<div class="row g-3 g-md-4">
     <!-- Popular Workstations -->
-    <div class="col-lg-6">
+    <div class="col-12 col-lg-6">
         <div class="card dashboard-card h-100">
             <div class="dashboard-card-header">
                 <h5><i class="fa-solid fa-fire text-warning me-2"></i>คอมพิวเตอร์ที่มียอดการจองสูงสุด</h5>
@@ -242,7 +274,7 @@
     </div>
 
     <!-- Recent Activities -->
-    <div class="col-lg-6">
+    <div class="col-12 col-lg-6">
         <div class="card dashboard-card h-100">
             <div class="dashboard-card-header">
                 <h5><i class="fa-solid fa-list-check me-2 text-primary"></i>บันทึกกิจกรรมล่าสุดในระบบ</h5>
@@ -257,10 +289,10 @@
                                 <div class="me-3 text-secondary pt-1" style="min-width: 65px; font-size: 0.75rem;">
                                     <?= date('H:i A', strtotime($log['created_at'])) ?>
                                 </div>
-                                <div class="flex-grow-1 activity-item">
+                                <div class="flex-grow-1 activity-item" style="min-width: 0;">
                                     <span class="text-dark fw-semibold"><?= esc($log['first_name'] . ' ' . $log['last_name'] ?? 'ระบบ') ?></span>
                                     <span class="badge bg-secondary-subtle text-secondary ms-1" style="font-size: 0.7rem; font-weight: 600;"><?= esc($log['action']) ?></span>
-                                    <div class="text-secondary mt-1 text-truncate" style="max-width: 320px; font-size: 0.8rem;"><?= esc($log['details']) ?></div>
+                                    <div class="text-secondary mt-1 text-truncate" style="font-size: 0.8rem;" title="<?= esc($log['details']) ?>"><?= esc($log['details']) ?></div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -275,26 +307,53 @@
 <!-- Dashboard Page Initializations -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // 1. Setup FullCalendar
+        var currentUserId = <?= (int)(auth()['id'] ?? 0) ?>;
+        var currentUserRole = <?= json_encode(auth()['role_name'] ?? '') ?>;
+        var canViewAll = ['Super Administrator', 'Department Administrator', 'Staff'].includes(currentUserRole);
+
+        // 1. Setup FullCalendar with responsiveness
         var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            themeSystem: 'bootstrap5',
-            locale: 'th',
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            },
-            events: '/reservations/calendar-data',
-            eventClick: function(info) {
-                if (info.event.url) {
-                    info.jsEvent.preventDefault();
-                    window.location.href = info.event.url;
-                }
-            },
-            height: 'auto'
-        });
+        
+        function getCalendarConfig() {
+            var isMobile = window.innerWidth < 768;
+            return {
+                initialView: isMobile ? 'listWeek' : 'dayGridMonth',
+                themeSystem: 'bootstrap5',
+                locale: 'th',
+                headerToolbar: isMobile ? {
+                    left: 'title',
+                    right: 'prev,next today'
+                } : {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: '/reservations/calendar-data',
+                eventClick: function(info) {
+                    var eventUserId = info.event.extendedProps.userId;
+                    
+                    if (!canViewAll && eventUserId !== currentUserId) {
+                        info.jsEvent.preventDefault();
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'ไม่มีสิทธิ์เข้าถึง',
+                            text: 'คุณสามารถดูรายละเอียดเฉพาะการจองของคุณเท่านั้น',
+                            confirmButtonColor: '#6366f1'
+                        });
+                        return;
+                    }
+                    
+                    if (info.event.url) {
+                        info.jsEvent.preventDefault();
+                        window.location.href = info.event.url;
+                    }
+                },
+                height: 'auto',
+                handleWindowResize: true
+            };
+        }
+
+        var calendar = new FullCalendar.Calendar(calendarEl, getCalendarConfig());
         calendar.render();
 
         // 2. Setup Chart.js (Trends)
@@ -326,9 +385,14 @@
             });
         <?php endif; ?>
 
-        // 3. Setup Chart.js (Status Breakdown)
+        // 3. Setup Chart.js (Status Breakdown) with responsive legend placement
         <?php if (!empty($statusStats)): ?>
             var statusCtx = document.getElementById('statusBreakdownChart').getContext('2d');
+            
+            function getLegendPosition() {
+                return window.innerWidth < 576 ? 'bottom' : 'right';
+            }
+
             var statusChart = new Chart(statusCtx, {
                 type: 'doughnut',
                 data: {
@@ -343,10 +407,48 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: { position: 'right', labels: { color: '#9ca3af', boxWidth: 12 } }
+                        legend: { 
+                            position: getLegendPosition(), 
+                            labels: { color: '#9ca3af', boxWidth: 12 } 
+                        }
                     }
                 }
             });
         <?php endif; ?>
+
+        // Listen for window resize to dynamically update layout configuration
+        var resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                var isMobile = window.innerWidth < 768;
+                
+                // Update FullCalendar dynamically
+                var currentView = calendar.view.type;
+                var targetView = isMobile ? 'listWeek' : 'dayGridMonth';
+                if (currentView !== targetView) {
+                    calendar.changeView(targetView);
+                }
+                calendar.setOption('headerToolbar', isMobile ? {
+                    left: 'title',
+                    right: 'prev,next today'
+                } : {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                });
+
+                // Update Status Chart Legend position dynamically
+                <?php if (!empty($statusStats)): ?>
+                if (statusChart) {
+                    var newPos = getLegendPosition();
+                    if (statusChart.options.plugins.legend.position !== newPos) {
+                        statusChart.options.plugins.legend.position = newPos;
+                        statusChart.update();
+                    }
+                }
+                <?php endif; ?>
+            }, 250);
+        });
     });
 </script>

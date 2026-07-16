@@ -643,13 +643,26 @@ $unreadNotifs = $currentUser ? $notifService->getUserNotifications((int)$current
             }, 500);
 
             // Toggle Sidebar (Responsive)
-            $('#sidebar-toggle').on('click', function() {
+            $('#sidebar-toggle').on('click', function(e) {
+                e.stopPropagation();
                 if ($(window).width() < 992) {
                     $('#sidebar').removeClass('collapsed');
                     $('#sidebar').toggleClass('show-mobile');
                 } else {
                     $('#sidebar').removeClass('show-mobile');
                     $('#sidebar').toggleClass('collapsed');
+                }
+            });
+
+            // Close mobile sidebar when clicking outside of it
+            $(document).on('click', function(e) {
+                if ($(window).width() < 992) {
+                    var sidebar = $('#sidebar');
+                    var toggleBtn = $('#sidebar-toggle');
+                    if (!sidebar.is(e.target) && sidebar.has(e.target).length === 0 &&
+                        !toggleBtn.is(e.target) && toggleBtn.has(e.target).length === 0) {
+                        sidebar.removeClass('show-mobile');
+                    }
                 }
             });
 

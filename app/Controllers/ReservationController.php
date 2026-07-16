@@ -342,7 +342,8 @@ class ReservationController extends Controller {
                 'backgroundColor' => $color,
                 'borderColor'     => $color,
                 'textColor'       => '#fff',
-                'url'             => '/reservations/view/' . $e['id']
+                'url'             => '/reservations/view/' . $e['id'],
+                'userId'          => (int)$e['user_id']
             ];
         }
 

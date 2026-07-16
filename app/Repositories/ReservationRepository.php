@@ -298,7 +298,7 @@ class ReservationRepository {
     public function getReservationsForCalendar(string $start, string $end): array {
         $stmt = $this->db->prepare("
             SELECT r.id, r.purpose as title, r.start_time as start, r.end_time as end,
-                   u.first_name, u.last_name, l.name as lab_name, rs.name as status_name, r.status_id
+                   u.first_name, u.last_name, l.name as lab_name, rs.name as status_name, r.status_id, r.user_id
             FROM reservations r
             JOIN users u ON r.user_id = u.id
             JOIN laboratories l ON r.laboratory_id = l.id
